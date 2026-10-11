@@ -1,467 +1,65 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <title>Web Technologies — Course Notes</title>
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<meta name="description" content="Course notes for Web Technologies (C2111C3) — covering WWW Architecture, HTML, CSS and JavaScript across 4 units."/>
+<link href="favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
-
 <header class="topbar">
-  <button type="button" class="brand" data-page="home">Web&nbsp;Technologies</button>
-  <div class="navgrp">
-    <button type="button" id="nav-home" class="navlink on" data-page="home">Home</button>
-    <button type="button" id="nav-unit1" class="navlink" data-page="unit1">Unit 1</button>
-    <button type="button" id="nav-unit2" class="navlink" data-page="unit2">Unit 2</button>
-  </div>
+<a class="brand" href="index.html" aria-label="Web Technologies home"><span class="brand-mark" aria-hidden="true">W</span><span class="brand-name">Web Technologies</span></a>
+<div class="navgrp">
+<a class="navlink on" href="index.html" id="nav-home">Home</a>
+<a class="navlink" href="unit1.html" id="nav-unit1">Unit 1</a>
+<a class="navlink" href="unit2.html" id="nav-unit2">Unit 2</a>
+<a class="navlink" href="unit3.html" id="nav-unit3">Unit 3</a>
+<a class="navlink" href="unit4.html" id="nav-unit4">Unit 4</a>
+<button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button>
+</div>
 </header>
 <div class="progress" id="progressBar"></div>
-
 <!-- ============ HOME ============ -->
-<div id="home" class="page active">
-  <div class="home-wrap">
-    <span class="eyebrow">Course C2111C3 · Dept. of Computer Science &amp; Engineering · ITM (SLS) Baroda University</span>
-    <h1>Introduction to Web Technologies</h1>
-    <p class="lede">Web Technologies is the study of how the World Wide Web actually works — the protocols, servers and addressing schemes that move information around, and the markup language, HTML, used to structure what people see in a browser. The Web is a system of interconnected pages reachable through the Internet's TCP/IP infrastructure: a browser (client) requests a resource over HTTP, a server returns it, and standards from the W3C keep every browser and server speaking the same language.</p>
-    <div class="stats-row">
-      <div><strong>2</strong><span>Units</span></div>
-      <div><strong>C2111C3</strong><span>Course code</span></div>
-    </div>
-    <div class="unit-list">
-      <a href="#unit1" class="unit-row c1" data-page="unit1">
-        <span class="num">01</span>
-        <span class="body">
-          <span class="eyebrow">Unit 1</span>
-          <h2>World Wide Web Architecture</h2>
-          <p>Protocols, server architectures, dynamic IP, Web 2.0 and web design standards — HTTP, URLs, domains, IPv4/IPv6, and how the Web is deployed and designed.</p>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-      <a href="#unit2" class="unit-row c2" data-page="unit2">
-        <span class="num">02</span>
-        <span class="body">
-          <span class="eyebrow">Unit 2</span>
-          <h2>HTML Fundamentals</h2>
-          <p>Document structure, elements, attributes, text formatting, colors, links, lists, tables, images, forms and HTML5 semantics &amp; media.</p>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
+<div class="page active" id="home">
+<div class="home-wrap">
+<span class="eyebrow">Course C2111C3 · Dept. of Computer Science &amp; Engineering · ITM (SLS) Baroda University</span>
+<h1>Introduction to Web Technologies</h1>
+<p class="lede">Web Technologies is the study of how the World Wide Web actually works — the protocols, servers and addressing schemes that move information around, and the markup language, HTML, used to structure what people see in a browser. The Web is a system of interconnected pages reachable through the Internet's TCP/IP infrastructure: a browser (client) requests a resource over HTTP, a server returns it, and standards from the W3C keep every browser and server speaking the same language.</p>
+<div class="stats-row">
+<div><strong>4</strong><span>Units</span></div>
+<div><strong>C2111C3</strong><span>Course code</span></div>
 </div>
-
-<!-- ============ UNIT 1 ============ -->
-<div id="unit1" class="page">
-<div class="layout">
-<nav class="side">
-  <button type="button" class="backlink" data-page="home">← Home</button>
-  <div class="label">Unit 1 — Contents</div>
-  <a href="#web-overview">WWW overview</a>
-  <a href="#internet-vs-www">Internet vs WWW</a>
-  <a href="#client-server">Client–server model</a>
-  <a href="#http">HTTP request/response</a>
-  <a href="#uri-url">URI vs URL</a>
-  <a href="#domains">Domains &amp; TLDs</a>
-  <a href="#ip-addressing">IPv4 vs IPv6</a>
-  <a href="#ip-classes">IPv4 limits, IPv6, classes</a>
-  <a href="#ip-mac">IP vs MAC &amp; safety</a>
-  <a href="#dynamic-dns">Dynamic IP &amp; DDNS</a>
-  <a href="#web20">Web 2.0 tech</a>
-  <a href="#linux-server">Linux server setup</a>
-  <a href="#web-design">Web design principles</a>
-  <a href="#review-u1">Review questions</a>
-</nav>
-<main>
-  <div class="unit-hero"><span class="eyebrow">Unit 1</span><h1>World Wide Web Architecture</h1><p>Protocols, server architectures, dynamic IP, Web 2.0 &amp; design standards.</p></div>
-
-  <section class="topic u1" id="web-overview">
-    <h3>What Is the World Wide Web?</h3>
-    <p>The WWW is a system of interconnected pages and information accessed over the Internet, using hyperlinks to navigate between documents in text, image, audio and video formats. It was invented by Tim Berners-Lee at CERN in 1989, and the World Wide Web Consortium (<code class="inline">W3C</code>) was founded to keep its standards open. The very first website is still live at <code class="inline">http://info.cern.ch/</code>. Today the Web hosts 1.5&nbsp;billion+ sites in 150+ languages, reaches over 63% of the world's population, and is browsed mostly through Chrome (60%+ share).</p>
-    <dl class="deflist">
-      <div><dt>Web 1.0 (1990–2000)</dt><dd>Static, read-only, one-way information sharing.</dd></div>
-      <div><dt>Web 2.0 (2000–2010)</dt><dd>Interactive, social, user-generated content.</dd></div>
-      <div><dt>Web 3.0 (2010–2020)</dt><dd>Semantic web — machines understand and personalize data.</dd></div>
-      <div><dt>Web 4.0 (2020–2030)</dt><dd>Intelligent, AI-driven, decentralized "web OS".</dd></div>
-    </dl>
-  </section>
-
-  <section class="topic u1" id="internet-vs-www">
-    <h3>Internet vs. World Wide Web</h3>
-    <table>
-      <tr><th></th><th>The Internet</th><th>The World Wide Web</th></tr>
-      <tr><td>Layer</td><td>Hardware / network layer</td><td>Application / data layer</td></tr>
-      <tr><td>What it is</td><td>A globally decentralized network of networks running TCP/IP — routers, fiber, packet switching, IP routing</td><td>An information system running <em>on top of</em> the Internet, using hypertext, URIs and HTTP</td></tr>
-    </table>
-    <p class="callout">Key takeaway: the Internet provides the <strong>infrastructure</strong> (the roads); the WWW provides the <strong>service</strong> (the traffic on them).</p>
-  </section>
-
-  <section class="topic u1" id="client-server">
-    <h3>Browsers, Servers &amp; the Client–Server Model</h3>
-    <p>The Web runs on a client–server architecture: the browser requests a resource and the server returns it. A browser is a software interface — Chrome, Opera Mini, Internet Explorer — that renders text/pictures/animation/video, and also handles searching, file transfer and mail.</p>
-    <dl class="deflist">
-      <div><dt>Web browser</dt><dd>Rendering engine (Blink, Gecko, WebKit) builds the DOM/CSSOM; a JS engine (V8, SpiderMonkey) runs scripts; a network/storage layer handles cache, cookies and TLS.</dd></div>
-      <div><dt>Web server</dt><dd>Listens on ports 80/443, serves files or routes to an app. Apache uses one process/thread per connection; Nginx/Node.js is async event-driven, handling 10k+ connections efficiently.</dd></div>
-    </dl>
-  </section>
-
-  <section class="topic u1" id="http">
-    <h3>HTTP: Request &amp; Response</h3>
-    <dl class="deflist">
-      <div><dt>Request</dt><dd><strong>Line:</strong> method + URI + version, e.g. <code class="inline">GET /api/data HTTP/1.1</code> · <strong>Headers:</strong> Host, User-Agent, Accept · <strong>Body:</strong> payload for POST/PUT</dd></div>
-      <div><dt>Response</dt><dd><strong>Status line:</strong> version + code, e.g. <code class="inline">HTTP/1.1 200 OK</code> · <strong>Headers:</strong> Content-Type, Set-Cookie, Cache-Control · <strong>Body:</strong> HTML, CSS or JSON</dd></div>
-    </dl>
-    <p><strong>Request–response lifecycle:</strong></p>
-    <ol>
-      <li><strong>DNS resolution</strong> — browser converts the domain to an IP via local cache → recursive resolver → root/TLD → authoritative DNS.</li>
-      <li><strong>TCP 3-way handshake</strong> — client sends SYN, server replies SYN-ACK, client sends ACK, on port 80 or 443.</li>
-      <li><strong>HTTP transmission</strong> — client sends the request; server runs routing/DB logic and returns the response.</li>
-      <li><strong>Teardown / keep-alive</strong> — socket closes, or stays open for further requests.</li>
-    </ol>
-  </section>
-
-  <section class="topic u1" id="uri-url">
-    <h3>URI vs. URL</h3>
-    <p><strong>URI</strong> is the umbrella term for anything that identifies a resource — a <strong>URL</strong> identifies by location, a <strong>URN</strong> identifies by name regardless of location (e.g. <code class="inline">urn:isbn:978-0-395-36341-6</code>). A <strong>URL</strong> is a URI that also tells you how to reach the resource, so it always includes a scheme, e.g. <code class="inline">https://www.google.com</code>. Analogy: a URI is like a person's name; a URL is their full home address.</p>
-    <p><strong>Anatomy of a URL</strong> — <code class="inline">https://www.itmbu.ac.in</code>:</p>
-    <table>
-      <tr><th>Part</th><th>Value</th><th>Meaning</th></tr>
-      <tr><td>Scheme</td><td>https://</td><td>Protocol; the "s" means an encrypted SSL/TLS connection</td></tr>
-      <tr><td>Subdomain</td><td>www</td><td>Conventional label for the main public web server</td></tr>
-      <tr><td>2nd-level domain</td><td>itmbu</td><td>The organisation's chosen name</td></tr>
-      <tr><td>TLD</td><td>.ac.in</td><td>.ac = academic institution, .in = India ccTLD</td></tr>
-    </table>
-  </section>
-
-  <section class="topic u1" id="domains">
-    <h3>Domain Names, Labels &amp; TLDs</h3>
-    <p>Domain names are human-readable stand-ins for hard-to-remember IP addresses, and are parsed <strong>right to left</strong> (e.g. <code class="inline">developer.mozilla.org</code> → TLD → label1 → label2). A <strong>label</strong> can be 1–63 characters, is case-insensitive, and may only use letters, digits and hyphens (never as the first/last character). The label directly before the TLD is the <strong>second-level domain (SLD)</strong>; a domain isn't limited to 3 labels — <code class="inline">informatics.ed.ac.uk</code> is valid, and any base domain can delegate subdomains (<code class="inline">support.mozilla.org</code>).</p>
-    <dl class="deflist">
-      <div><dt>Generic TLDs</dt><dd>.com, .org, .net — no eligibility rules.</dd></div>
-      <div><dt>Country-code TLDs</dt><dd>.in, .fr, .us — may require local language or hosting.</dd></div>
-      <div><dt>Restricted TLDs</dt><dd>.gov (government only), .edu / .ac (accredited institutions only).</dd></div>
-    </dl>
-    <p class="callout">You never permanently <em>own</em> a domain — you pay a registrar (which uses a registry) for the right to use it for one or more years, renewable ahead of other applicants. Some TLDs skip standard registrars entirely — every <code class="inline">.fire</code> domain, for example, is managed directly by Amazon.</p>
-  </section>
-
-  <section class="topic u1" id="ip-addressing">
-    <h3>IP Addressing: IPv4 vs. IPv6</h3>
-    <p>An IP address is a unique numeric label assigned to every network-connected device, allocated under IANA rules (ranging 0.0.0.0–255.255.255.255 for IPv4).</p>
-    <table>
-      <tr><th>Feature</th><th>IPv4</th><th>IPv6</th></tr>
-      <tr><td>Size</td><td>32-bit</td><td>128-bit</td></tr>
-      <tr><td>Notation</td><td>Decimal dotted — 192.168.5.18</td><td>Hex colon — 2001:db8::1</td></tr>
-      <tr><td>Address space</td><td>~4.3 billion (nearly exhausted)</td><td>340 undecillion</td></tr>
-      <tr><td>Configuration</td><td>Manual or DHCP</td><td>SLAAC, DHCPv6 or manual</td></tr>
-      <tr><td>NAT</td><td>Often required</td><td>End-to-end connectivity, no NAT needed</td></tr>
-      <tr><td>Security</td><td>IPsec optional</td><td>IPsec built in</td></tr>
-      <tr><td>Header</td><td>Variable, 20–60 bytes</td><td>Fixed, 40 bytes</td></tr>
-    </table>
-    <dl class="deflist">
-      <div><dt>Public</dt><dd>The router's external address facing the ISP/Internet.</dd></div>
-      <div><dt>Private</dt><dd>Internal LAN address, reused across networks to save IPv4 space (IPv6 equivalent: ULA).</dd></div>
-      <div><dt>Static</dt><dd>Manually fixed; used for servers, DNS, production systems.</dd></div>
-      <div><dt>Dynamic</dt><dd>Auto-assigned by DHCP from a pool; changes on reboot/lease expiry.</dd></div>
-    </dl>
-    <p><strong>Reserved addresses:</strong> <code class="inline">0.0.0.0</code> default network · <code class="inline">127.0.0.1</code> loopback (self-test) · <code class="inline">169.254.0.1–254</code> link-local (auto-assigned when DHCP fails) · <code class="inline">255.255.255.255</code> broadcast.</p>
-  </section>
-
-  <section class="topic u1" id="ip-classes">
-    <h3>IPv4 Limitations, IPv6 Benefits &amp; Address Classes</h3>
-    <p>IPv4's 32-bit space is nearly exhausted, and it shows in three places: <strong>scalability</strong> (limited addresses plus wasteful broadcast overhead), <strong>routing</strong> (complex, variable-length headers and manual/DHCP misconfiguration slow every hop), and <strong>security</strong> (IPsec isn't built in, and QoS prioritisation for real-time video/voice is weak). IPv6 fixes all three with a 128-bit space, a simplified fixed 40-byte header, built-in IPsec, native QoS, and mobile-friendly design.</p>
-    <p><strong>Transition strategies:</strong> <em>dual stacking</em> (a device runs IPv4 and IPv6 side by side), <em>tunneling</em> (IPv6 packets are wrapped inside IPv4 to cross older networks), and <em>NAT</em> (translates addresses so the two IP versions can talk to each other).</p>
-    <table>
-      <tr><th>Class</th><th>Range</th><th>Use</th></tr>
-      <tr><td>A</td><td>10.0.0.0 – 10.255.255.255</td><td>Common subnet</td></tr>
-      <tr><td>B</td><td>172.16.0.0 – 172.31.255.255</td><td>Common subnet</td></tr>
-      <tr><td>C</td><td>192.168.0.0 – 192.168.255.255</td><td>Common subnet</td></tr>
-      <tr><td>D</td><td>224.0.0.0 – 239.255.255.255</td><td>Multicast</td></tr>
-      <tr><td>E</td><td>240.0.0.0 – 254.255.255.255</td><td>Experimental</td></tr>
-    </table>
-  </section>
-
-  <section class="topic u1" id="ip-mac">
-    <h3>IP vs. MAC Address, and Staying Safe</h3>
-    <dl class="deflist">
-      <div><dt>IP address</dt><dd>Network-layer connection identifier, 4 bytes (IPv4) or 16 bytes (IPv6), assigned by the ISP, usually dynamic, and visible to third parties online.</dd></div>
-      <div><dt>MAC address</dt><dd>Data-link-layer physical identifier, 6-byte hex, set by the hardware manufacturer, static/permanent, and private — visible only on your own LAN.</dd></div>
-    </dl>
-    <p>An exposed IP can be used for geographic tracking, targeted DDoS attacks, or to falsely implicate you in illegal downloads. Protect it with a <strong>VPN</strong>, a <strong>proxy server</strong>, a <strong>NAT firewall</strong>, ISP-rotated <strong>dynamic IPs</strong>, or simply by resetting your modem.</p>
-  </section>
-
-  <section class="topic u1" id="dynamic-dns">
-    <h3>Dynamic IP &amp; Dynamic DNS (DDNS)</h3>
-    <p><strong>Problem:</strong> standard DNS A-records map a domain to a fixed IP. When a home or small-business server's dynamic IP changes, the domain lookup breaks.</p>
-    <p><strong>Solution:</strong> a lightweight DDNS daemon on the server watches the WAN IP; whenever it changes, the daemon sends an authenticated API request that updates the DNS A-record within seconds, keeping the domain reliably pointed at the server.</p>
-  </section>
-
-  <section class="topic u1" id="web20">
-    <h3>Web 2.0 Technologies</h3>
-    <dl class="deflist">
-      <div><dt>AJAX / async</dt><dd><code class="inline">XMLHttpRequest</code> and <code class="inline">fetch()</code> fetch data in the background without a full reload — enabling single-page apps.</dd></div>
-      <div><dt>User-generated content</dt><dd>Shift from static one-way pages to participatory platforms — social networks, wikis, blogs.</dd></div>
-      <div><dt>RESTful APIs</dt><dd>Lightweight JSON over HTTP REST replaced heavy SOAP/XML, enabling third-party mashups.</dd></div>
-      <div><dt>SaaS</dt><dd>Apps moved from installed binaries to cloud-hosted browser apps (Docs, Figma, Office 365).</dd></div>
-    </dl>
-  </section>
-
-  <section class="topic u1" id="linux-server">
-    <h3>Deploying a Linux Web Server</h3>
-    <ol>
-      <li><strong>Install packages</strong> — <code class="inline">sudo apt update && sudo apt install apache2 nginx</code> on Debian/Ubuntu.</li>
-      <li><strong>Directory &amp; permissions</strong> — document root at <code class="inline">/var/www/html</code>, ownership assigned via <code class="inline">chown</code>.</li>
-      <li><strong>Virtual hosts</strong> — per-domain config files in <code class="inline">sites-available</code>, letting one IP serve multiple domains.</li>
-      <li><strong>Firewall &amp; SSL</strong> — open HTTP/HTTPS ports with <code class="inline">ufw</code>; issue certificates via Let's Encrypt / Certbot.</li>
-    </ol>
-  </section>
-
-  <section class="topic u1" id="web-design">
-    <h3>Effective Web Design Principles</h3>
-    <dl class="deflist">
-      <div><dt>Visual hierarchy / F-pattern</dt><dd>Users scan, not read — eye-tracking shows an F-shaped pattern, so put logos, nav and CTAs along the top-left path.</dd></div>
-      <div><dt>3-click rule</dt><dd>Clear sitemaps and breadcrumbs so any content is reachable within 3 clicks.</dd></div>
-      <div><dt>Responsive design (RWD)</dt><dd>Fluid layouts across phones/tablets/desktops via media queries, flexbox and grid.</dd></div>
-      <div><dt>Accessibility (WCAG 2.1)</dt><dd>Minimum 4.5:1 text contrast, image alt text, full keyboard navigation.</dd></div>
-      <div><dt>Performance</dt><dd>Core Web Vitals (LCP/CLS/FID) improved via image compression, minification, CDNs; 1s loads convert far better than 4s loads.</dd></div>
-      <div><dt>Cross-browser &amp; security</dt><dd>CSS resets/autoprefixer for engine differences; enforce Content-Security-Policy headers to block XSS and clickjacking.</dd></div>
-    </dl>
-  </section>
-
-  <section class="topic u1" id="review-u1">
-    <h3>Quick Review Questions</h3>
-    <ol>
-      <li>Differentiate between the Internet and the WWW, with examples.</li>
-      <li>Explain the HTTP request–response header structure in detail.</li>
-      <li>Describe Dynamic IP and how Dynamic DNS resolves IP shifts.</li>
-      <li>What are the key features of Web 2.0? Explain AJAX.</li>
-    </ol>
-  </section>
-  <footer>Web Technologies (C2111C3) — Unit 1 notes, compiled from class lecture slides.</footer>
-</main>
+<div class="unit-list">
+<a class="unit-row c1" href="unit1.html">
+<span class="num">01</span>
+<span class="body">
+<span class="eyebrow">Unit 1</span>
+<h2>World Wide Web Architecture</h2>
+<p>Protocols, server architectures, dynamic IP, Web 2.0 and web design standards — HTTP, URLs, domains, IPv4/IPv6, and how the Web is deployed and designed.</p>
+</span>
+<span class="arrow">→</span>
+</a>
+<a class="unit-row c2" href="unit2.html">
+<span class="num">02</span>
+<span class="body">
+<span class="eyebrow">Unit 2</span>
+<h2>HTML Fundamentals</h2>
+<p>Document structure, elements, attributes, text formatting, colors, links, lists, tables, images, forms and HTML5 semantics &amp; media.</p>
+</span>
+<span class="arrow">→</span>
+</a>
+<a class="unit-row c3" href="unit3.html"><span class="num">03</span><span class="body"><span class="eyebrow">Unit 3</span><h2>Cascading Style Sheets (CSS)</h2><p>CSS purpose, syntax, selectors, values, colors, backgrounds, typography, borders, box model, positioning and modern layout features.</p></span><span class="arrow">→</span></a>
+<a class="unit-row c4" href="unit4.html"><span class="num">04</span><span class="body"><span class="eyebrow">Unit 4</span><h2>JavaScript and jQuery</h2><p>Client-side scripting, data types, functions, objects, DOM, form validation, events, DHTML, AJAX and jQuery.</p></span><span class="arrow">→</span></a>
 </div>
 </div>
-
-<!-- ============ UNIT 2 ============ -->
-<div id="unit2" class="page">
-<div class="layout">
-<nav class="side">
-  <button type="button" class="backlink" data-page="home">← Home</button>
-  <div class="label">Unit 2 — Contents</div>
-  <a href="#html-intro">What is HTML?</a>
-  <a href="#html-history">HTML history</a>
-  <a href="#elements-tags">Elements &amp; nesting</a>
-  <a href="#attributes">Attributes</a>
-  <a href="#headings-paragraphs">Headings &amp; paragraphs</a>
-  <a href="#text-formatting">Text formatting</a>
-  <a href="#quotations">Quotations &amp; citation</a>
-  <a href="#colors">Colors</a>
-  <a href="#links">Hyperlinks</a>
-  <a href="#lists">Lists</a>
-  <a href="#tables">Tables</a>
-  <a href="#images">Images</a>
-  <a href="#forms">Forms &amp; input</a>
-  <a href="#html5">HTML5 semantics &amp; media</a>
-  <a href="#meta">Meta tags &amp; XHTML</a>
-</nav>
-<main>
-  <div class="unit-hero"><span class="eyebrow" style="color:var(--u2)">Unit 2</span><h1>HTML</h1><p>Document structure, elements, attributes, formatting, and HTML5.</p></div>
-
-  <section class="topic u2" id="html-intro">
-    <h3>What Is HTML?</h3>
-    <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It describes a page's structure through nested elements that define layout blocks; the browser interprets these tags to render content — it never displays the raw tags themselves.</p>
-    <div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Page Title&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;My First Heading&lt;/h1&gt;
-    &lt;p&gt;My first paragraph.&lt;/p&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
-    <p><code class="inline">&lt;!DOCTYPE html&gt;</code> declares an HTML5 document · <code class="inline">&lt;html&gt;</code> is the root element · <code class="inline">&lt;head&gt;</code> holds metadata · <code class="inline">&lt;title&gt;</code> sets the browser tab text · <code class="inline">&lt;body&gt;</code> contains everything visible.</p>
-    <p class="callout">Tip: press <strong>Ctrl+U</strong> (Cmd+Option+U on Mac) to view a page's raw source, or right-click → <strong>Inspect</strong> to explore live elements and styles in DevTools.</p>
-  </section>
-
-  <section class="topic u2" id="html-history">
-    <h3>A Brief History of HTML</h3>
-    <p>1989 Tim Berners-Lee invents the Web → 1991 he writes HTML → 1993 Dave Raggett drafts HTML → 1995 HTML 2.0 → 1997 HTML 3.2 (W3C) → 1999 HTML 4.01 → 2000 XHTML 1.0 → 2008–2014 WHATWG drafts culminate in the HTML5 W3C Recommendation (2014) → 2016–2017 HTML 5.1 / 5.2.</p>
-  </section>
-
-  <section class="topic u2" id="elements-tags">
-    <h3>Elements, Tags &amp; Nesting</h3>
-    <p>An element = start tag + content + end tag, e.g. <code class="inline">&lt;p&gt;My first paragraph.&lt;/p&gt;</code>. <strong>Empty elements</strong> like <code class="inline">&lt;br&gt;</code> have no content and no closing tag. Elements nest inside one another, and closing tags must mirror the opening order: <code class="inline">&lt;html&gt;&lt;body&gt;…&lt;/body&gt;&lt;/html&gt;</code>.</p>
-    <p class="callout">Never skip a closing tag — browsers may auto-correct malformed markup, but relying on that causes unpredictable rendering, style leakage and accessibility bugs. HTML tags are case-insensitive (<code class="inline">&lt;P&gt;</code> = <code class="inline">&lt;p&gt;</code>), but W3C recommends — and XHTML requires — lowercase.</p>
-  </section>
-
-  <section class="topic u2" id="attributes">
-    <h3>HTML Attributes</h3>
-    <p>Attributes live only in the start tag, as <code class="inline">name="value"</code> pairs, and modify an element's default behaviour.</p>
-    <table>
-      <tr><th>Attribute</th><th>Used on</th><th>Purpose</th></tr>
-      <tr><td><code>href</code></td><td>&lt;a&gt;</td><td>Link destination</td></tr>
-      <tr><td><code>src</code></td><td>&lt;img&gt;</td><td>Resource path — absolute (external) or relative (local, more resilient)</td></tr>
-      <tr><td><code>width</code> / <code>height</code></td><td>&lt;img&gt;</td><td>Reserves layout space, prevents shift while loading</td></tr>
-      <tr><td><code>alt</code></td><td>&lt;img&gt;</td><td>Fallback text for accessibility / broken images</td></tr>
-      <tr><td><code>style</code></td><td>any element</td><td>Inline CSS, e.g. <code>style="background-color:powderblue;"</code></td></tr>
-      <tr><td><code>lang</code></td><td>&lt;html&gt;</td><td>Declares page language, e.g. <code>lang="en-US"</code></td></tr>
-      <tr><td><code>title</code></td><td>any element</td><td>Hover tooltip / advisory text</td></tr>
-    </table>
-    <p class="callout">Always quote attribute values (mandatory once a value contains a space) and prefer lowercase attribute names. If a value itself contains quotes, alternate styles: <code class="inline">title='John "Ace" Smith'</code> or <code class="inline">title="John 'Ace' Smith"</code>.</p>
-  </section>
-
-  <section class="topic u2" id="headings-paragraphs">
-    <h3>Headings, Paragraphs &amp; Whitespace</h3>
-    <p><code class="inline">&lt;h1&gt;</code>–<code class="inline">&lt;h6&gt;</code> define six levels of heading importance — use only one <code class="inline">&lt;h1&gt;</code> per page, and never use headings just to make text big or bold (search engines use them to index structure; resize with <code class="inline">style="font-size:60px;"</code> instead). <code class="inline">&lt;p&gt;</code> defines a block-level paragraph; browsers add margin before and after automatically.</p>
-    <p>Extra spaces and line breaks in your source code <strong>collapse to a single space</strong> when rendered (the "poem problem") — use <code class="inline">&lt;pre&gt;</code> to preserve exact whitespace and line breaks in a monospace font. <code class="inline">&lt;hr&gt;</code> inserts a thematic break; <code class="inline">&lt;br&gt;</code> forces a line break without starting a new paragraph.</p>
-  </section>
-
-  <section class="topic u2" id="text-formatting">
-    <h3>Text Formatting Elements</h3>
-    <table>
-      <tr><th>Tag</th><th>Effect</th></tr>
-      <tr><td><code>&lt;b&gt;</code></td><td>Bold text (visual only)</td></tr>
-      <tr><td><code>&lt;strong&gt;</code></td><td>Important text (bold + semantic emphasis)</td></tr>
-      <tr><td><code>&lt;i&gt;</code></td><td>Italic text (visual only)</td></tr>
-      <tr><td><code>&lt;em&gt;</code></td><td>Emphasized text (italic + semantic stress)</td></tr>
-      <tr><td><code>&lt;small&gt;</code></td><td>Smaller text</td></tr>
-      <tr><td><code>&lt;mark&gt;</code></td><td>Highlighted / marked text</td></tr>
-      <tr><td><code>&lt;del&gt;</code></td><td>Deleted text (strikethrough)</td></tr>
-      <tr><td><code>&lt;ins&gt;</code></td><td>Inserted text (underlined)</td></tr>
-      <tr><td><code>&lt;sub&gt;</code> / <code>&lt;sup&gt;</code></td><td>Subscript / superscript</td></tr>
-    </table>
-  </section>
-
-  <section class="topic u2" id="quotations">
-    <h3>Quotation &amp; Citation Elements</h3>
-    <table>
-      <tr><th>Tag</th><th>Purpose</th></tr>
-      <tr><td><code>&lt;blockquote&gt;</code></td><td>Long, block-level quotation (browser adds margins)</td></tr>
-      <tr><td><code>&lt;q&gt;</code></td><td>Short inline quotation (browser adds quote marks automatically)</td></tr>
-      <tr><td><code>&lt;abbr&gt;</code></td><td>Abbreviation — pair with <code>title=""</code> for the full term on hover</td></tr>
-      <tr><td><code>&lt;address&gt;</code></td><td>Contact information for the author/owner</td></tr>
-      <tr><td><code>&lt;cite&gt;</code></td><td>Title of a referenced creative work</td></tr>
-      <tr><td><code>&lt;bdo&gt;</code></td><td>Overrides text direction (bi-directional override)</td></tr>
-    </table>
-  </section>
-
-  <section class="topic u2" id="colors">
-    <h3>HTML Colors</h3>
-    <p>Colors can use 140+ named keywords or three numeric models:</p>
-    <div class="swatch-row">
-      <div class="swatch" style="background:rgb(255,99,71)"></div>
-      <div class="swatch" style="background:#2952cc"></div>
-      <div class="swatch" style="background:hsl(147,50%,47%)"></div>
-      <div class="swatch" style="background:hsla(9,100%,64%,.5)"></div>
-    </div>
-    <ul>
-      <li><strong>RGB</strong> — <code class="inline">rgb(red, green, blue)</code>, each 0–255, e.g. <code class="inline">rgb(255,99,71)</code>; <strong>RGBA</strong> adds an alpha (0–1) for opacity.</li>
-      <li><strong>HEX</strong> — <code class="inline">#RRGGBB</code>, two hex digits per channel, e.g. <code class="inline">#ff6347</code>.</li>
-      <li><strong>HSL</strong> — <code class="inline">hsl(hue, saturation, lightness)</code>: hue 0–360° (0=red, 120=green, 240=blue), saturation 0–100% (0%=gray → 100%=full color), lightness 0–100% (0%=black → 100%=white). <strong>HSLA</strong> adds an alpha channel.</li>
-    </ul>
-    <p><strong>Try it — live HSL mixer:</strong></p>
-    <div class="mixer">
-      <div class="sliders">
-        <label>Hue <span id="mh-val">210</span>°<input type="range" id="mh" min="0" max="360" value="210"></label>
-        <label>Saturation <span id="ms-val">70</span>%<input type="range" id="ms" min="0" max="100" value="70"></label>
-        <label>Lightness <span id="ml-val">55</span>%<input type="range" id="ml" min="0" max="100" value="55"></label>
-      </div>
-      <div class="mixer-col">
-        <div class="mixer-swatch" id="mixer-swatch"></div>
-        <code class="inline mixer-code" id="mixer-code">hsl(210,70%,55%)</code>
-      </div>
-    </div>
-  </section>
-
-  <section class="topic u2" id="links">
-    <h3>Hyperlinks</h3>
-    <div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;a href="https://www.itmbu.ac.in" target="_blank"&gt;Visit ITMBU&lt;/a&gt;
-&lt;a href="https://example.com"&gt;&lt;img src="logo.png" alt="Logo"&gt;&lt;/a&gt;
-&lt;a href="mailto:info@itmbu.ac.in"&gt;Email us&lt;/a&gt;</code></pre></div>
-    <p>Images and buttons can be wrapped in an <code class="inline">&lt;a&gt;</code> too, and <code class="inline">mailto:</code> links open the user's email client. The <code class="inline">target</code> attribute controls where the link opens: <code class="inline">_self</code> (default, same tab), <code class="inline">_blank</code> (new tab), <code class="inline">_parent</code>, <code class="inline">_top</code>.</p>
-    <p><strong>Absolute URL</strong> — full address to an external resource. <strong>Relative URL</strong> — a path within the same site (e.g. <code class="inline">images/pic.jpg</code>); preferred, since it survives a domain change.</p>
-  </section>
-
-  <section class="topic u2" id="lists">
-    <h3>Lists</h3>
-    <dl class="deflist">
-      <div><dt>&lt;ul&gt;</dt><dd>Unordered (bulleted) list of <code class="inline">&lt;li&gt;</code> items; <code class="inline">type</code> can be disc, circle or square.</dd></div>
-      <div><dt>&lt;ol&gt;</dt><dd>Ordered (numbered) list of <code class="inline">&lt;li&gt;</code> items; <code class="inline">type</code> can be 1, A, a, I or i.</dd></div>
-      <div><dt>&lt;dl&gt;</dt><dd>Description list pairing <code class="inline">&lt;dt&gt;</code> (term) with <code class="inline">&lt;dd&gt;</code> (description).</dd></div>
-    </dl>
-  </section>
-
-  <section class="topic u2" id="tables">
-    <h3>Tables</h3>
-    <p><code class="inline">&lt;table&gt;</code> defines the table, <code class="inline">&lt;tr&gt;</code> a row, <code class="inline">&lt;td&gt;</code> a standard cell, <code class="inline">&lt;th&gt;</code> a bold, centered header cell.</p>
-    <div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;table&gt;
-  &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Marks&lt;/th&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;Asha&lt;/td&gt;&lt;td&gt;92&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</code></pre></div>
-  </section>
-
-  <section class="topic u2" id="images">
-    <h3>Images</h3>
-    <div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;img src="img_girl.jpg" alt="Girl with a jacket" width="500" height="600"&gt;</code></pre></div>
-    <p><code class="inline">&lt;img&gt;</code> is an empty (self-closing) element. <code class="inline">src</code> can be absolute or relative; <code class="inline">alt</code> is essential for accessibility and shows if the image fails to load; <code class="inline">width</code>/<code class="inline">height</code> prevent layout shift while loading. Common formats: JPEG, PNG, GIF, SVG, WebP.</p>
-  </section>
-
-  <section class="topic u2" id="forms">
-    <h3>Forms &amp; Input</h3>
-    <div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;form action="/action_page.php"&gt;
-  &lt;label for="fname"&gt;First name:&lt;/label&gt;
-  &lt;input type="text" id="fname" name="fname"&gt;
-  &lt;input type="submit" value="Submit"&gt;
-&lt;/form&gt;</code></pre></div>
-    <p><code class="inline">&lt;form&gt;</code> wraps and coordinates all input controls, typically posting to a server via <code class="inline">action</code>. <code class="inline">&lt;input&gt;</code> is the core control — its behaviour depends on <code class="inline">type</code>:</p>
-    <table>
-      <tr><th>Type</th><th>Behaviour</th></tr>
-      <tr><td><code>text</code></td><td>Single-line text field</td></tr>
-      <tr><td><code>radio</code></td><td>Pick one option from a group sharing the same <code>name</code></td></tr>
-      <tr><td><code>checkbox</code></td><td>Pick any number — selections are independent</td></tr>
-      <tr><td><code>submit</code></td><td>Sends the form data to the server</td></tr>
-      <tr><td><code>email</code></td><td>HTML5 — validates an @ symbol</td></tr>
-      <tr><td><code>date</code></td><td>HTML5 — native calendar picker</td></tr>
-      <tr><td><code>color</code></td><td>HTML5 — native color picker</td></tr>
-      <tr><td><code>range</code></td><td>HTML5 — draggable slider</td></tr>
-    </table>
-    <p><code class="inline">&lt;label for="id"&gt;</code> ties descriptive text to a control by matching its <code class="inline">id</code> — screen readers read it aloud, and clicking the label focuses/toggles the control.</p>
-  </section>
-
-  <section class="topic u2" id="html5">
-    <h3>HTML5: Semantics, Media &amp; APIs</h3>
-    <p>Semantic elements replace generic <code class="inline">&lt;div id="header"&gt;</code> with self-describing tags — <code class="inline">&lt;header&gt;</code>, <code class="inline">&lt;nav&gt;</code>, <code class="inline">&lt;main&gt;</code>, <code class="inline">&lt;article&gt;</code>, <code class="inline">&lt;section&gt;</code>, <code class="inline">&lt;aside&gt;</code>, <code class="inline">&lt;footer&gt;</code> — improving SEO and screen-reader navigation.</p>
-    <div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;video width="600" controls&gt;
-  &lt;source src="lecture.mp4" type="video/mp4"&gt;
-&lt;/video&gt;
-
-&lt;audio controls&gt;
-  &lt;source src="podcast.mp3" type="audio/mpeg"&gt;
-&lt;/audio&gt;</code></pre></div>
-    <p>Native <code class="inline">&lt;video&gt;</code> / <code class="inline">&lt;audio&gt;</code> need no plugins. The <strong>Drag &amp; Drop API</strong>: add <code class="inline">draggable="true"</code> to make any element draggable, then handle JS events like <code class="inline">ondragstart</code> and <code class="inline">ondragover</code>.</p>
-  </section>
-
-  <section class="topic u2" id="meta">
-    <h3>Meta Tags &amp; XHTML</h3>
-    <p>Meta tags live inside <code class="inline">&lt;head&gt;</code>, invisible to visitors but critical for machines:</p>
-    <table>
-      <tr><th>Tag</th><th>Purpose</th></tr>
-      <tr><td><code>&lt;meta charset="UTF-8"&gt;</code></td><td>Character encoding</td></tr>
-      <tr><td><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></td><td>Responsive scaling on mobile</td></tr>
-      <tr><td><code>&lt;meta name="description" content="..."&gt;</code></td><td>Summary shown in search results</td></tr>
-    </table>
-    <p class="callout"><strong>XHTML</strong> is the strict, XML-based version of HTML: tags must be lowercase, every element must be properly closed — including empty ones, e.g. <code class="inline">&lt;br /&gt;</code> — and nesting must be perfectly ordered. Unlike HTML5, it won't forgive small mistakes.</p>
-  </section>
-
-  <footer>Web Technologies (C2111C3) — Unit 2 notes, compiled from class lecture slides.</footer>
-</main>
+<footer class="home-footer">Designed &amp; developed by Nayan Gupta</footer>
 </div>
-</div>
-
-<script src="script.js" defer></script>
+<script defer="" src="script.js"></script>
 </body>
 </html>

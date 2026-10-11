@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Web Technologies — Unit 2: HTML Fundamentals</title>
+<meta name="description" content="Unit 2 study notes: HTML document structure, elements, attributes, text formatting, colors, links, lists, tables, images, forms and HTML5 semantics."/>
+<link href="favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="index.html" aria-label="Web Technologies home"><span class="brand-mark" aria-hidden="true">W</span><span class="brand-name">Web Technologies</span></a>
+<div class="navgrp"><a class="navlink" href="index.html" id="nav-home">Home</a><a class="navlink" href="unit1.html" id="nav-unit1">Unit 1</a><a class="navlink on" href="unit2.html" id="nav-unit2">Unit 2</a><a class="navlink" href="unit3.html" id="nav-unit3">Unit 3</a><a class="navlink" href="unit4.html" id="nav-unit4">Unit 4</a><button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle" id="themeToggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span><span class="theme-label">Dark mode</span></button></div>
+</header>
+<div class="progress" id="progressBar"></div>
+<div class="page active" id="unit2">
+<div class="layout">
+<nav class="side">
+<a class="backlink" href="index.html">← Home</a>
+<div class="label">Unit 2 — Contents</div>
+<a href="#html-intro">What is HTML?</a>
+<a href="#html-history">HTML history</a>
+<a href="#elements-tags">Elements &amp; nesting</a>
+<a href="#attributes">Attributes</a>
+<a href="#headings-paragraphs">Headings &amp; paragraphs</a>
+<a href="#text-formatting">Text formatting</a>
+<a href="#quotations">Quotations &amp; citation</a>
+<a href="#colors">Colors</a>
+<a href="#links">Hyperlinks</a>
+<a href="#lists">Lists</a>
+<a href="#tables">Tables</a>
+<a href="#images">Images</a>
+<a href="#forms">Forms &amp; input</a>
+<a href="#html5">HTML5 semantics &amp; media</a>
+<a href="#meta">Meta tags &amp; XHTML</a>
+</nav>
+<main>
+<div class="unit-hero"><span class="eyebrow" style="color:var(--u2)">Unit 2</span><h1>HTML</h1><p>Document structure, elements, attributes, formatting, and HTML5.</p></div>
+<section class="topic u2" id="html-intro">
+<h3>What Is HTML?</h3>
+<p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It describes a page's structure through nested elements that define layout blocks; the browser interprets these tags to render content — it never displays the raw tags themselves.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;My First Heading&lt;/h1&gt;
+    &lt;p&gt;My first paragraph.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<p><code class="inline">&lt;!DOCTYPE html&gt;</code> declares an HTML5 document · <code class="inline">&lt;html&gt;</code> is the root element · <code class="inline">&lt;head&gt;</code> holds metadata · <code class="inline">&lt;title&gt;</code> sets the browser tab text · <code class="inline">&lt;body&gt;</code> contains everything visible.</p>
+<p class="callout">Tip: press <strong>Ctrl+U</strong> (Cmd+Option+U on Mac) to view a page's raw source, or right-click → <strong>Inspect</strong> to explore live elements and styles in DevTools.</p>
+</section>
+<section class="topic u2" id="html-history">
+<h3>A Brief History of HTML</h3>
+<p>1989 Tim Berners-Lee invents the Web → 1991 he writes HTML → 1993 Dave Raggett drafts HTML → 1995 HTML 2.0 → 1997 HTML 3.2 (W3C) → 1999 HTML 4.01 → 2000 XHTML 1.0 → 2008–2014 WHATWG drafts culminate in the HTML5 W3C Recommendation (2014) → 2016–2017 HTML 5.1 / 5.2.</p>
+</section>
+<section class="topic u2" id="elements-tags">
+<h3>Elements, Tags &amp; Nesting</h3>
+<p>An element = start tag + content + end tag, e.g. <code class="inline">&lt;p&gt;My first paragraph.&lt;/p&gt;</code>. <strong>Empty elements</strong> like <code class="inline">&lt;br&gt;</code> have no content and no closing tag. Elements nest inside one another, and closing tags must mirror the opening order: <code class="inline">&lt;html&gt;&lt;body&gt;…&lt;/body&gt;&lt;/html&gt;</code>.</p>
+<p class="callout">Never skip a closing tag — browsers may auto-correct malformed markup, but relying on that causes unpredictable rendering, style leakage and accessibility bugs. HTML tags are case-insensitive (<code class="inline">&lt;P&gt;</code> = <code class="inline">&lt;p&gt;</code>), but W3C recommends — and XHTML requires — lowercase.</p>
+</section>
+<section class="topic u2" id="attributes">
+<h3>HTML Attributes</h3>
+<p>Attributes live only in the start tag, as <code class="inline">name="value"</code> pairs, and modify an element's default behaviour.</p>
+<table>
+<tr><th>Attribute</th><th>Used on</th><th>Purpose</th></tr>
+<tr><td><code>href</code></td><td>&lt;a&gt;</td><td>Link destination</td></tr>
+<tr><td><code>src</code></td><td>&lt;img&gt;</td><td>Resource path — absolute (external) or relative (local, more resilient)</td></tr>
+<tr><td><code>width</code> / <code>height</code></td><td>&lt;img&gt;</td><td>Reserves layout space, prevents shift while loading</td></tr>
+<tr><td><code>alt</code></td><td>&lt;img&gt;</td><td>Fallback text for accessibility / broken images</td></tr>
+<tr><td><code>style</code></td><td>any element</td><td>Inline CSS, e.g. <code>style="background-color:powderblue;"</code></td></tr>
+<tr><td><code>lang</code></td><td>&lt;html&gt;</td><td>Declares page language, e.g. <code>lang="en-US"</code></td></tr>
+<tr><td><code>title</code></td><td>any element</td><td>Hover tooltip / advisory text</td></tr>
+</table>
+<p class="callout">Always quote attribute values (mandatory once a value contains a space) and prefer lowercase attribute names. If a value itself contains quotes, alternate styles: <code class="inline">title='John "Ace" Smith'</code> or <code class="inline">title="John 'Ace' Smith"</code>.</p>
+</section>
+<section class="topic u2" id="headings-paragraphs">
+<h3>Headings, Paragraphs &amp; Whitespace</h3>
+<p><code class="inline">&lt;h1&gt;</code>–<code class="inline">&lt;h6&gt;</code> define six levels of heading importance — use only one <code class="inline">&lt;h1&gt;</code> per page, and never use headings just to make text big or bold (search engines use them to index structure; resize with <code class="inline">style="font-size:60px;"</code> instead). <code class="inline">&lt;p&gt;</code> defines a block-level paragraph; browsers add margin before and after automatically.</p>
+<p>Extra spaces and line breaks in your source code <strong>collapse to a single space</strong> when rendered (the "poem problem") — use <code class="inline">&lt;pre&gt;</code> to preserve exact whitespace and line breaks in a monospace font. <code class="inline">&lt;hr&gt;</code> inserts a thematic break; <code class="inline">&lt;br&gt;</code> forces a line break without starting a new paragraph.</p>
+</section>
+<section class="topic u2" id="text-formatting">
+<h3>Text Formatting Elements</h3>
+<table>
+<tr><th>Tag</th><th>Effect</th></tr>
+<tr><td><code>&lt;b&gt;</code></td><td>Bold text (visual only)</td></tr>
+<tr><td><code>&lt;strong&gt;</code></td><td>Important text (bold + semantic emphasis)</td></tr>
+<tr><td><code>&lt;i&gt;</code></td><td>Italic text (visual only)</td></tr>
+<tr><td><code>&lt;em&gt;</code></td><td>Emphasized text (italic + semantic stress)</td></tr>
+<tr><td><code>&lt;small&gt;</code></td><td>Smaller text</td></tr>
+<tr><td><code>&lt;mark&gt;</code></td><td>Highlighted / marked text</td></tr>
+<tr><td><code>&lt;del&gt;</code></td><td>Deleted text (strikethrough)</td></tr>
+<tr><td><code>&lt;ins&gt;</code></td><td>Inserted text (underlined)</td></tr>
+<tr><td><code>&lt;sub&gt;</code> / <code>&lt;sup&gt;</code></td><td>Subscript / superscript</td></tr>
+</table>
+</section>
+<section class="topic u2" id="quotations">
+<h3>Quotation &amp; Citation Elements</h3>
+<table>
+<tr><th>Tag</th><th>Purpose</th></tr>
+<tr><td><code>&lt;blockquote&gt;</code></td><td>Long, block-level quotation (browser adds margins)</td></tr>
+<tr><td><code>&lt;q&gt;</code></td><td>Short inline quotation (browser adds quote marks automatically)</td></tr>
+<tr><td><code>&lt;abbr&gt;</code></td><td>Abbreviation — pair with <code>title=""</code> for the full term on hover</td></tr>
+<tr><td><code>&lt;address&gt;</code></td><td>Contact information for the author/owner</td></tr>
+<tr><td><code>&lt;cite&gt;</code></td><td>Title of a referenced creative work</td></tr>
+<tr><td><code>&lt;bdo&gt;</code></td><td>Overrides text direction (bi-directional override)</td></tr>
+</table>
+</section>
+<section class="topic u2" id="colors">
+<h3>HTML Colors</h3>
+<p>Colors can use 140+ named keywords or three numeric models:</p>
+<div class="swatch-row">
+<div class="swatch" style="background:rgb(255,99,71)"></div>
+<div class="swatch" style="background:#2952cc"></div>
+<div class="swatch" style="background:hsl(147,50%,47%)"></div>
+<div class="swatch" style="background:hsla(9,100%,64%,.5)"></div>
+</div>
+<ul>
+<li><strong>RGB</strong> — <code class="inline">rgb(red, green, blue)</code>, each 0–255, e.g. <code class="inline">rgb(255,99,71)</code>; <strong>RGBA</strong> adds an alpha (0–1) for opacity.</li>
+<li><strong>HEX</strong> — <code class="inline">#RRGGBB</code>, two hex digits per channel, e.g. <code class="inline">#ff6347</code>.</li>
+<li><strong>HSL</strong> — <code class="inline">hsl(hue, saturation, lightness)</code>: hue 0–360° (0=red, 120=green, 240=blue), saturation 0–100% (0%=gray → 100%=full color), lightness 0–100% (0%=black → 100%=white). <strong>HSLA</strong> adds an alpha channel.</li>
+</ul>
+<p><strong>Try it — live HSL mixer:</strong></p>
+<div class="mixer">
+<div class="sliders">
+<label>Hue <span id="mh-val">210</span>°<input id="mh" max="360" min="0" type="range" value="210"/></label>
+<label>Saturation <span id="ms-val">70</span>%<input id="ms" max="100" min="0" type="range" value="70"/></label>
+<label>Lightness <span id="ml-val">55</span>%<input id="ml" max="100" min="0" type="range" value="55"/></label>
+</div>
+<div class="mixer-col">
+<div class="mixer-swatch" id="mixer-swatch"></div>
+<code class="inline mixer-code" id="mixer-code">hsl(210,70%,55%)</code>
+</div>
+</div>
+</section>
+<section class="topic u2" id="links">
+<h3>Hyperlinks</h3>
+<div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;a href="https://www.itmbu.ac.in" target="_blank"&gt;Visit ITMBU&lt;/a&gt;
+&lt;a href="https://example.com"&gt;&lt;img src="logo.png" alt="Logo"&gt;&lt;/a&gt;
+&lt;a href="mailto:info@itmbu.ac.in"&gt;Email us&lt;/a&gt;</code></pre></div>
+<p>Images and buttons can be wrapped in an <code class="inline">&lt;a&gt;</code> too, and <code class="inline">mailto:</code> links open the user's email client. The <code class="inline">target</code> attribute controls where the link opens: <code class="inline">_self</code> (default, same tab), <code class="inline">_blank</code> (new tab), <code class="inline">_parent</code>, <code class="inline">_top</code>.</p>
+<p><strong>Absolute URL</strong> — full address to an external resource. <strong>Relative URL</strong> — a path within the same site (e.g. <code class="inline">images/pic.jpg</code>); preferred, since it survives a domain change.</p>
+</section>
+<section class="topic u2" id="lists">
+<h3>Lists</h3>
+<dl class="deflist">
+<div><dt>&lt;ul&gt;</dt><dd>Unordered (bulleted) list of <code class="inline">&lt;li&gt;</code> items; <code class="inline">type</code> can be disc, circle or square.</dd></div>
+<div><dt>&lt;ol&gt;</dt><dd>Ordered (numbered) list of <code class="inline">&lt;li&gt;</code> items; <code class="inline">type</code> can be 1, A, a, I or i.</dd></div>
+<div><dt>&lt;dl&gt;</dt><dd>Description list pairing <code class="inline">&lt;dt&gt;</code> (term) with <code class="inline">&lt;dd&gt;</code> (description).</dd></div>
+</dl>
+</section>
+<section class="topic u2" id="tables">
+<h3>Tables</h3>
+<p><code class="inline">&lt;table&gt;</code> defines the table, <code class="inline">&lt;tr&gt;</code> a row, <code class="inline">&lt;td&gt;</code> a standard cell, <code class="inline">&lt;th&gt;</code> a bold, centered header cell.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Marks&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Asha&lt;/td&gt;&lt;td&gt;92&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre></div>
+</section>
+<section class="topic u2" id="images">
+<h3>Images</h3>
+<div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;img src="img_girl.jpg" alt="Girl with a jacket" width="500" height="600"&gt;</code></pre></div>
+<p><code class="inline">&lt;img&gt;</code> is an empty (self-closing) element. <code class="inline">src</code> can be absolute or relative; <code class="inline">alt</code> is essential for accessibility and shows if the image fails to load; <code class="inline">width</code>/<code class="inline">height</code> prevent layout shift while loading. Common formats: JPEG, PNG, GIF, SVG, WebP.</p>
+</section>
+<section class="topic u2" id="forms">
+<h3>Forms &amp; Input</h3>
+<div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;form action="/action_page.php"&gt;
+  &lt;label for="fname"&gt;First name:&lt;/label&gt;
+  &lt;input type="text" id="fname" name="fname"&gt;
+  &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;</code></pre></div>
+<p><code class="inline">&lt;form&gt;</code> wraps and coordinates all input controls, typically posting to a server via <code class="inline">action</code>. <code class="inline">&lt;input&gt;</code> is the core control — its behaviour depends on <code class="inline">type</code>:</p>
+<table>
+<tr><th>Type</th><th>Behaviour</th></tr>
+<tr><td><code>text</code></td><td>Single-line text field</td></tr>
+<tr><td><code>radio</code></td><td>Pick one option from a group sharing the same <code>name</code></td></tr>
+<tr><td><code>checkbox</code></td><td>Pick any number — selections are independent</td></tr>
+<tr><td><code>submit</code></td><td>Sends the form data to the server</td></tr>
+<tr><td><code>email</code></td><td>HTML5 — validates an @ symbol</td></tr>
+<tr><td><code>date</code></td><td>HTML5 — native calendar picker</td></tr>
+<tr><td><code>color</code></td><td>HTML5 — native color picker</td></tr>
+<tr><td><code>range</code></td><td>HTML5 — draggable slider</td></tr>
+</table>
+<p><code class="inline">&lt;label for="id"&gt;</code> ties descriptive text to a control by matching its <code class="inline">id</code> — screen readers read it aloud, and clicking the label focuses/toggles the control.</p>
+</section>
+<section class="topic u2" id="html5">
+<h3>HTML5: Semantics, Media &amp; APIs</h3>
+<p>Semantic elements replace generic <code class="inline">&lt;div id="header"&gt;</code> with self-describing tags — <code class="inline">&lt;header&gt;</code>, <code class="inline">&lt;nav&gt;</code>, <code class="inline">&lt;main&gt;</code>, <code class="inline">&lt;article&gt;</code>, <code class="inline">&lt;section&gt;</code>, <code class="inline">&lt;aside&gt;</code>, <code class="inline">&lt;footer&gt;</code> — improving SEO and screen-reader navigation.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">html</span><button class="copybtn">Copy</button></div><pre data-lang="html"><code>&lt;video width="600" controls&gt;
+  &lt;source src="lecture.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+&lt;audio controls&gt;
+  &lt;source src="podcast.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre></div>
+<p>Native <code class="inline">&lt;video&gt;</code> / <code class="inline">&lt;audio&gt;</code> need no plugins. The <strong>Drag &amp; Drop API</strong>: add <code class="inline">draggable="true"</code> to make any element draggable, then handle JS events like <code class="inline">ondragstart</code> and <code class="inline">ondragover</code>.</p>
+</section>
+<section class="topic u2" id="meta">
+<h3>Meta Tags &amp; XHTML</h3>
+<p>Meta tags live inside <code class="inline">&lt;head&gt;</code>, invisible to visitors but critical for machines:</p>
+<table>
+<tr><th>Tag</th><th>Purpose</th></tr>
+<tr><td><code>&lt;meta charset="UTF-8"&gt;</code></td><td>Character encoding</td></tr>
+<tr><td><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code></td><td>Responsive scaling on mobile</td></tr>
+<tr><td><code>&lt;meta name="description" content="..."&gt;</code></td><td>Summary shown in search results</td></tr>
+</table>
+<p class="callout"><strong>XHTML</strong> is the strict, XML-based version of HTML: tags must be lowercase, every element must be properly closed — including empty ones, e.g. <code class="inline">&lt;br /&gt;</code> — and nesting must be perfectly ordered. Unlike HTML5, it won't forgive small mistakes.</p>
+</section>
+<footer>Designed &amp; developed by Nayan Gupta</footer>
+</main>
+</div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

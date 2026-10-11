@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Web Technologies — Unit 1: WWW Architecture</title>
+<meta name="description" content="Unit 1 study notes: WWW overview, Internet vs WWW, HTTP, URLs, IP addressing, DNS, Web 2.0, Linux server setup and web design principles."/>
+<link href="favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="index.html" aria-label="Web Technologies home"><span class="brand-mark" aria-hidden="true">W</span><span class="brand-name">Web Technologies</span></a>
+<div class="navgrp"><a class="navlink" href="index.html" id="nav-home">Home</a><a class="navlink on" href="unit1.html" id="nav-unit1">Unit 1</a><a class="navlink" href="unit2.html" id="nav-unit2">Unit 2</a><a class="navlink" href="unit3.html" id="nav-unit3">Unit 3</a><a class="navlink" href="unit4.html" id="nav-unit4">Unit 4</a><button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle" id="themeToggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span><span class="theme-label">Dark mode</span></button></div>
+</header>
+<div class="progress" id="progressBar"></div>
+<div class="page active" id="unit1">
+<div class="layout">
+<nav class="side">
+<a class="backlink" href="index.html">← Home</a>
+<div class="label">Unit 1 — Contents</div>
+<a href="#web-overview">WWW overview</a>
+<a href="#internet-vs-www">Internet vs WWW</a>
+<a href="#client-server">Client–server model</a>
+<a href="#http">HTTP request/response</a>
+<a href="#uri-url">URI vs URL</a>
+<a href="#domains">Domains &amp; TLDs</a>
+<a href="#ip-addressing">IPv4 vs IPv6</a>
+<a href="#ip-classes">IPv4 limits, IPv6, classes</a>
+<a href="#ip-mac">IP vs MAC &amp; safety</a>
+<a href="#dynamic-dns">Dynamic IP &amp; DDNS</a>
+<a href="#web20">Web 2.0 tech</a>
+<a href="#linux-server">Linux server setup</a>
+<a href="#web-design">Web design principles</a>
+<a href="#review-u1">Review questions</a>
+</nav>
+<main>
+<div class="unit-hero"><span class="eyebrow">Unit 1</span><h1>World Wide Web Architecture</h1><p>Protocols, server architectures, dynamic IP, Web 2.0 &amp; design standards.</p></div>
+<section class="topic u1" id="web-overview">
+<h3>What Is the World Wide Web?</h3>
+<p>The WWW is a system of interconnected pages and information accessed over the Internet, using hyperlinks to navigate between documents in text, image, audio and video formats. It was invented by Tim Berners-Lee at CERN in 1989, and the World Wide Web Consortium (<code class="inline">W3C</code>) was founded to keep its standards open. The very first website is still live at <code class="inline">http://info.cern.ch/</code>. Today the Web hosts 1.5 billion+ sites in 150+ languages, reaches over 63% of the world's population, and is browsed mostly through Chrome (60%+ share).</p>
+<dl class="deflist">
+<div><dt>Web 1.0 (1990–2000)</dt><dd>Static, read-only, one-way information sharing.</dd></div>
+<div><dt>Web 2.0 (2000–2010)</dt><dd>Interactive, social, user-generated content.</dd></div>
+<div><dt>Web 3.0 (2010–2020)</dt><dd>Semantic web — machines understand and personalize data.</dd></div>
+<div><dt>Web 4.0 (2020–2030)</dt><dd>Intelligent, AI-driven, decentralized "web OS".</dd></div>
+</dl>
+</section>
+<section class="topic u1" id="internet-vs-www">
+<h3>Internet vs. World Wide Web</h3>
+<table>
+<tr><th></th><th>The Internet</th><th>The World Wide Web</th></tr>
+<tr><td>Layer</td><td>Hardware / network layer</td><td>Application / data layer</td></tr>
+<tr><td>What it is</td><td>A globally decentralized network of networks running TCP/IP — routers, fiber, packet switching, IP routing</td><td>An information system running <em>on top of</em> the Internet, using hypertext, URIs and HTTP</td></tr>
+</table>
+<p class="callout">Key takeaway: the Internet provides the <strong>infrastructure</strong> (the roads); the WWW provides the <strong>service</strong> (the traffic on them).</p>
+</section>
+<section class="topic u1" id="client-server">
+<h3>Browsers, Servers &amp; the Client–Server Model</h3>
+<p>The Web runs on a client–server architecture: the browser requests a resource and the server returns it. A browser is a software interface — Chrome, Opera Mini, Internet Explorer — that renders text/pictures/animation/video, and also handles searching, file transfer and mail.</p>
+<dl class="deflist">
+<div><dt>Web browser</dt><dd>Rendering engine (Blink, Gecko, WebKit) builds the DOM/CSSOM; a JS engine (V8, SpiderMonkey) runs scripts; a network/storage layer handles cache, cookies and TLS.</dd></div>
+<div><dt>Web server</dt><dd>Listens on ports 80/443, serves files or routes to an app. Apache uses one process/thread per connection; Nginx/Node.js is async event-driven, handling 10k+ connections efficiently.</dd></div>
+</dl>
+</section>
+<section class="topic u1" id="http">
+<h3>HTTP: Request &amp; Response</h3>
+<dl class="deflist">
+<div><dt>Request</dt><dd><strong>Line:</strong> method + URI + version, e.g. <code class="inline">GET /api/data HTTP/1.1</code> · <strong>Headers:</strong> Host, User-Agent, Accept · <strong>Body:</strong> payload for POST/PUT</dd></div>
+<div><dt>Response</dt><dd><strong>Status line:</strong> version + code, e.g. <code class="inline">HTTP/1.1 200 OK</code> · <strong>Headers:</strong> Content-Type, Set-Cookie, Cache-Control · <strong>Body:</strong> HTML, CSS or JSON</dd></div>
+</dl>
+<p><strong>Request–response lifecycle:</strong></p>
+<ol>
+<li><strong>DNS resolution</strong> — browser converts the domain to an IP via local cache → recursive resolver → root/TLD → authoritative DNS.</li>
+<li><strong>TCP 3-way handshake</strong> — client sends SYN, server replies SYN-ACK, client sends ACK, on port 80 or 443.</li>
+<li><strong>HTTP transmission</strong> — client sends the request; server runs routing/DB logic and returns the response.</li>
+<li><strong>Teardown / keep-alive</strong> — socket closes, or stays open for further requests.</li>
+</ol>
+</section>
+<section class="topic u1" id="uri-url">
+<h3>URI vs. URL</h3>
+<p><strong>URI</strong> is the umbrella term for anything that identifies a resource — a <strong>URL</strong> identifies by location, a <strong>URN</strong> identifies by name regardless of location (e.g. <code class="inline">urn:isbn:978-0-395-36341-6</code>). A <strong>URL</strong> is a URI that also tells you how to reach the resource, so it always includes a scheme, e.g. <code class="inline">https://www.google.com</code>. Analogy: a URI is like a person's name; a URL is their full home address.</p>
+<p><strong>Anatomy of a URL</strong> — <code class="inline">https://www.itmbu.ac.in</code>:</p>
+<table>
+<tr><th>Part</th><th>Value</th><th>Meaning</th></tr>
+<tr><td>Scheme</td><td>https://</td><td>Protocol; the "s" means an encrypted SSL/TLS connection</td></tr>
+<tr><td>Subdomain</td><td>www</td><td>Conventional label for the main public web server</td></tr>
+<tr><td>2nd-level domain</td><td>itmbu</td><td>The organisation's chosen name</td></tr>
+<tr><td>TLD</td><td>.ac.in</td><td>.ac = academic institution, .in = India ccTLD</td></tr>
+</table>
+</section>
+<section class="topic u1" id="domains">
+<h3>Domain Names, Labels &amp; TLDs</h3>
+<p>Domain names are human-readable stand-ins for hard-to-remember IP addresses, and are parsed <strong>right to left</strong> (e.g. <code class="inline">developer.mozilla.org</code> → TLD → label1 → label2). A <strong>label</strong> can be 1–63 characters, is case-insensitive, and may only use letters, digits and hyphens (never as the first/last character). The label directly before the TLD is the <strong>second-level domain (SLD)</strong>; a domain isn't limited to 3 labels — <code class="inline">informatics.ed.ac.uk</code> is valid, and any base domain can delegate subdomains (<code class="inline">support.mozilla.org</code>).</p>
+<dl class="deflist">
+<div><dt>Generic TLDs</dt><dd>.com, .org, .net — no eligibility rules.</dd></div>
+<div><dt>Country-code TLDs</dt><dd>.in, .fr, .us — may require local language or hosting.</dd></div>
+<div><dt>Restricted TLDs</dt><dd>.gov (government only), .edu / .ac (accredited institutions only).</dd></div>
+</dl>
+<p class="callout">You never permanently <em>own</em> a domain — you pay a registrar (which uses a registry) for the right to use it for one or more years, renewable ahead of other applicants. Some TLDs skip standard registrars entirely — every <code class="inline">.fire</code> domain, for example, is managed directly by Amazon.</p>
+</section>
+<section class="topic u1" id="ip-addressing">
+<h3>IP Addressing: IPv4 vs. IPv6</h3>
+<p>An IP address is a unique numeric label assigned to every network-connected device, allocated under IANA rules (ranging 0.0.0.0–255.255.255.255 for IPv4).</p>
+<table>
+<tr><th>Feature</th><th>IPv4</th><th>IPv6</th></tr>
+<tr><td>Size</td><td>32-bit</td><td>128-bit</td></tr>
+<tr><td>Notation</td><td>Decimal dotted — 192.168.5.18</td><td>Hex colon — 2001:db8::1</td></tr>
+<tr><td>Address space</td><td>~4.3 billion (nearly exhausted)</td><td>340 undecillion</td></tr>
+<tr><td>Configuration</td><td>Manual or DHCP</td><td>SLAAC, DHCPv6 or manual</td></tr>
+<tr><td>NAT</td><td>Often required</td><td>End-to-end connectivity, no NAT needed</td></tr>
+<tr><td>Security</td><td>IPsec optional</td><td>IPsec built in</td></tr>
+<tr><td>Header</td><td>Variable, 20–60 bytes</td><td>Fixed, 40 bytes</td></tr>
+</table>
+<dl class="deflist">
+<div><dt>Public</dt><dd>The router's external address facing the ISP/Internet.</dd></div>
+<div><dt>Private</dt><dd>Internal LAN address, reused across networks to save IPv4 space (IPv6 equivalent: ULA).</dd></div>
+<div><dt>Static</dt><dd>Manually fixed; used for servers, DNS, production systems.</dd></div>
+<div><dt>Dynamic</dt><dd>Auto-assigned by DHCP from a pool; changes on reboot/lease expiry.</dd></div>
+</dl>
+<p><strong>Reserved addresses:</strong> <code class="inline">0.0.0.0</code> default network · <code class="inline">127.0.0.1</code> loopback (self-test) · <code class="inline">169.254.0.1–254</code> link-local (auto-assigned when DHCP fails) · <code class="inline">255.255.255.255</code> broadcast.</p>
+</section>
+<section class="topic u1" id="ip-classes">
+<h3>IPv4 Limitations, IPv6 Benefits &amp; Address Classes</h3>
+<p>IPv4's 32-bit space is nearly exhausted, and it shows in three places: <strong>scalability</strong> (limited addresses plus wasteful broadcast overhead), <strong>routing</strong> (complex, variable-length headers and manual/DHCP misconfiguration slow every hop), and <strong>security</strong> (IPsec isn't built in, and QoS prioritisation for real-time video/voice is weak). IPv6 fixes all three with a 128-bit space, a simplified fixed 40-byte header, built-in IPsec, native QoS, and mobile-friendly design.</p>
+<p><strong>Transition strategies:</strong> <em>dual stacking</em> (a device runs IPv4 and IPv6 side by side), <em>tunneling</em> (IPv6 packets are wrapped inside IPv4 to cross older networks), and <em>NAT</em> (translates addresses so the two IP versions can talk to each other).</p>
+<table>
+<tr><th>Class</th><th>Range</th><th>Use</th></tr>
+<tr><td>A</td><td>10.0.0.0 – 10.255.255.255</td><td>Common subnet</td></tr>
+<tr><td>B</td><td>172.16.0.0 – 172.31.255.255</td><td>Common subnet</td></tr>
+<tr><td>C</td><td>192.168.0.0 – 192.168.255.255</td><td>Common subnet</td></tr>
+<tr><td>D</td><td>224.0.0.0 – 239.255.255.255</td><td>Multicast</td></tr>
+<tr><td>E</td><td>240.0.0.0 – 254.255.255.255</td><td>Experimental</td></tr>
+</table>
+</section>
+<section class="topic u1" id="ip-mac">
+<h3>IP vs. MAC Address, and Staying Safe</h3>
+<dl class="deflist">
+<div><dt>IP address</dt><dd>Network-layer connection identifier, 4 bytes (IPv4) or 16 bytes (IPv6), assigned by the ISP, usually dynamic, and visible to third parties online.</dd></div>
+<div><dt>MAC address</dt><dd>Data-link-layer physical identifier, 6-byte hex, set by the hardware manufacturer, static/permanent, and private — visible only on your own LAN.</dd></div>
+</dl>
+<p>An exposed IP can be used for geographic tracking, targeted DDoS attacks, or to falsely implicate you in illegal downloads. Protect it with a <strong>VPN</strong>, a <strong>proxy server</strong>, a <strong>NAT firewall</strong>, ISP-rotated <strong>dynamic IPs</strong>, or simply by resetting your modem.</p>
+</section>
+<section class="topic u1" id="dynamic-dns">
+<h3>Dynamic IP &amp; Dynamic DNS (DDNS)</h3>
+<p><strong>Problem:</strong> standard DNS A-records map a domain to a fixed IP. When a home or small-business server's dynamic IP changes, the domain lookup breaks.</p>
+<p><strong>Solution:</strong> a lightweight DDNS daemon on the server watches the WAN IP; whenever it changes, the daemon sends an authenticated API request that updates the DNS A-record within seconds, keeping the domain reliably pointed at the server.</p>
+</section>
+<section class="topic u1" id="web20">
+<h3>Web 2.0 Technologies</h3>
+<dl class="deflist">
+<div><dt>AJAX / async</dt><dd><code class="inline">XMLHttpRequest</code> and <code class="inline">fetch()</code> fetch data in the background without a full reload — enabling single-page apps.</dd></div>
+<div><dt>User-generated content</dt><dd>Shift from static one-way pages to participatory platforms — social networks, wikis, blogs.</dd></div>
+<div><dt>RESTful APIs</dt><dd>Lightweight JSON over HTTP REST replaced heavy SOAP/XML, enabling third-party mashups.</dd></div>
+<div><dt>SaaS</dt><dd>Apps moved from installed binaries to cloud-hosted browser apps (Docs, Figma, Office 365).</dd></div>
+</dl>
+</section>
+<section class="topic u1" id="linux-server">
+<h3>Deploying a Linux Web Server</h3>
+<ol>
+<li><strong>Install packages</strong> — <code class="inline">sudo apt update &amp;&amp; sudo apt install apache2 nginx</code> on Debian/Ubuntu.</li>
+<li><strong>Directory &amp; permissions</strong> — document root at <code class="inline">/var/www/html</code>, ownership assigned via <code class="inline">chown</code>.</li>
+<li><strong>Virtual hosts</strong> — per-domain config files in <code class="inline">sites-available</code>, letting one IP serve multiple domains.</li>
+<li><strong>Firewall &amp; SSL</strong> — open HTTP/HTTPS ports with <code class="inline">ufw</code>; issue certificates via Let's Encrypt / Certbot.</li>
+</ol>
+</section>
+<section class="topic u1" id="web-design">
+<h3>Effective Web Design Principles</h3>
+<dl class="deflist">
+<div><dt>Visual hierarchy / F-pattern</dt><dd>Users scan, not read — eye-tracking shows an F-shaped pattern, so put logos, nav and CTAs along the top-left path.</dd></div>
+<div><dt>3-click rule</dt><dd>Clear sitemaps and breadcrumbs so any content is reachable within 3 clicks.</dd></div>
+<div><dt>Responsive design (RWD)</dt><dd>Fluid layouts across phones/tablets/desktops via media queries, flexbox and grid.</dd></div>
+<div><dt>Accessibility (WCAG 2.1)</dt><dd>Minimum 4.5:1 text contrast, image alt text, full keyboard navigation.</dd></div>
+<div><dt>Performance</dt><dd>Core Web Vitals (LCP/CLS/FID) improved via image compression, minification, CDNs; 1s loads convert far better than 4s loads.</dd></div>
+<div><dt>Cross-browser &amp; security</dt><dd>CSS resets/autoprefixer for engine differences; enforce Content-Security-Policy headers to block XSS and clickjacking.</dd></div>
+</dl>
+</section>
+<section class="topic u1" id="review-u1">
+<h3>Quick Review Questions</h3>
+<ol>
+<li>Differentiate between the Internet and the WWW, with examples.</li>
+<li>Explain the HTTP request–response header structure in detail.</li>
+<li>Describe Dynamic IP and how Dynamic DNS resolves IP shifts.</li>
+<li>What are the key features of Web 2.0? Explain AJAX.</li>
+</ol>
+</section>
+<footer>Designed &amp; developed by Nayan Gupta</footer>
+</main>
+</div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

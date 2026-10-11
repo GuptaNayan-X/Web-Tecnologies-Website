@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Web Technologies — Unit 4: JavaScript and jQuery</title>
+<meta name="description" content="Unit 4 study notes: client-side JavaScript, data types, conditions, loops, functions, DOM, form validation, DHTML, events, AJAX and jQuery."/>
+<link href="favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="index.html" aria-label="Web Technologies home"><span class="brand-mark" aria-hidden="true">W</span><span class="brand-name">Web Technologies</span></a>
+<div class="navgrp"><a class="navlink" href="index.html" id="nav-home">Home</a><a class="navlink" href="unit1.html" id="nav-unit1">Unit 1</a><a class="navlink" href="unit2.html" id="nav-unit2">Unit 2</a><a class="navlink" href="unit3.html" id="nav-unit3">Unit 3</a><a class="navlink on" href="unit4.html" id="nav-unit4">Unit 4</a><button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle" id="themeToggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span><span class="theme-label">Dark mode</span></button></div>
+</header>
+<div class="progress" id="progressBar"></div>
+<div class="page active" id="unit4">
+<div class="layout">
+<nav class="side"><a class="backlink" href="index.html">← Home</a><div class="label">Unit 4 — Contents</div>
+<a href="#u4-basics">Client-side JavaScript</a><a href="#u4-types">Data types</a><a href="#u4-control">Conditions and loops</a><a href="#u4-functions">Functions and popup boxes</a><a href="#u4-dom">Objects and DOM</a><a href="#u4-forms">Forms and validation</a><a href="#u4-dhtml">DHTML</a><a href="#u4-events">Events and buttons</a><a href="#u4-ajax">AJAX and fetch</a><a href="#u4-jquery">Introduction to jQuery</a><a href="#u4-recap">Recap and checklist</a></nav>
+<main><div class="unit-hero"><span class="eyebrow">Unit 4 · Web Technologies · 15 Contact Hours</span><h1>JavaScript and jQuery</h1><p>Detailed study notes aligned with the supplied Unit 4 guide, with examples for client-side programming, objects, the DOM, validation, DHTML, events, AJAX and jQuery.</p></div>
+<section class="topic u4" id="u4-basics"><h3>01. Client-Side Scripting with JavaScript</h3><p>JavaScript runs in the browser and responds to user actions. It can calculate values, choose what happens next, update the current page, validate entries, change text, reveal tabs, add animations and fetch new data from a server.</p><p>HTML gives structure, CSS gives presentation, and JavaScript gives behavior. JavaScript is a high-level, dynamic scripting language and one of the core technologies of the web; modern browsers run it.</p><p>Fundamental building blocks include variables, values, operators, expressions, conditions, loops, functions, objects, arrays and browser APIs such as <code>document</code> and <code>window</code>.</p><ul><li><strong>Variables:</strong> store information that a program can use later.</li><li><strong>Conditions:</strong> <code>if</code>, <code>else if</code> and <code>else</code> choose a branch based on a true/false expression.</li><li><strong>Loops:</strong> repeat work; <code>for</code>, <code>while</code> and <code>for...of</code> are common forms.</li><li><strong>Functions:</strong> package reusable instructions, may receive parameters, and can return a result.</li></ul></section>
+<section class="topic u4" id="u4-types"><h3>JavaScript Data Types</h3><p>A data type describes the kind of value a variable contains and the operations that make sense for it. JavaScript is dynamically typed: a variable can hold values of different types at different times, and a type declaration is not written when creating it. Use <code>typeof</code> to inspect many values while learning or debugging.</p>
+<table><tr><th>Category</th><th>Type</th><th>Example</th><th>What it represents</th></tr><tr><td>Primitive</td><td>String</td><td><code>"Web Technologies"</code></td><td>Text written inside quotes or backticks.</td></tr><tr><td>Primitive</td><td>Number</td><td><code>42</code>, <code>3.14</code></td><td>Integer and decimal values; special numeric values include <code>NaN</code> and <code>Infinity</code>.</td></tr><tr><td>Primitive</td><td>BigInt</td><td><code>9007199254740993n</code></td><td>Very large integers; integer literals use the <code>n</code> suffix.</td></tr><tr><td>Primitive</td><td>Boolean</td><td><code>true</code>, <code>false</code></td><td>Logical yes/no values often used in conditions.</td></tr><tr><td>Primitive</td><td>Undefined</td><td><code>undefined</code></td><td>The value of a declared variable that has not been assigned a value.</td></tr><tr><td>Primitive</td><td>Null</td><td><code>null</code></td><td>An intentional absence of a value.</td></tr><tr><td>Primitive</td><td>Symbol</td><td><code>Symbol("id")</code></td><td>A unique value, mainly used as a distinctive object property key.</td></tr><tr><td>Non-primitive</td><td>Object</td><td><code>{ name: "Asha" }</code></td><td>A collection of related properties; arrays and functions are also object types.</td></tr></table>
+<div class="codeblock"><div class="codebar"><span class="lang">JavaScript</span><button class="copybtn" type="button">Copy</button></div><pre>const studentName = "Asha";       // string
+const score = 85;                 // number
+const isEnrolled = true;          // boolean
+let selectedCourse;               // undefined
+const missingValue = null;        // intentional absence
+const subjects = ["HTML", "CSS"]; // array
+const student = { name: studentName, score: score };
+
+console.log(typeof studentName);  // "string"
+console.log(typeof score);        // "number"
+console.log(typeof isEnrolled);   // "boolean"
+console.log(typeof selectedCourse); // "undefined"
+console.log(typeof subjects);     // "object"
+console.log(typeof null);         // "object" (historical behavior)</pre></div>
+<p class="callout"><strong>Remember:</strong> <code>typeof null</code> returns <code>"object"</code> for historical reasons, even though <code>null</code> is a primitive. Arrays also report <code>"object"</code>; use <code>Array.isArray(value)</code> to check an array. Functions have their own <code>typeof</code> result: <code>"function"</code>.</p></section>
+<section class="topic u4" id="u4-control"><h3>Conditions, Operators and Loops</h3><h4>Variables and reassignment</h4><p>Use <code>const</code> for a binding that will not be reassigned and <code>let</code> when reassignment is needed.</p><div class="codeblock"><div class="codebar"><span class="lang">JavaScript</span><button class="copybtn" type="button">Copy</button></div><pre>const studentName = "Asha";
+let marks = 78;
+let isPass = marks &gt;= 40;
+console.log(studentName); // Asha
+console.log(marks);       // 78
+console.log(isPass);      // true
+marks = marks + 7;
+console.log(marks);       // 85</pre></div>
+<h4>Conditions and logic</h4><p>Conditions help a program decide what action to take. Logical operators such as <code>&amp;&amp;</code> (AND), <code>||</code> (OR) and <code>!</code> (NOT) combine or reverse logical checks.</p><div class="codeblock"><div class="codebar"><span class="lang">JavaScript</span><button class="copybtn" type="button">Copy</button></div><pre>const age = 20;
+const feesPaid = true;
+if (age &gt;= 18 &amp;&amp; feesPaid) {
+  console.log("Student can register");
+} else if (age &gt;= 18 &amp;&amp; !feesPaid) {
+  console.log("Please pay the fees");
+} else {
+  console.log("Student is not eligible");
+}
+const result = (age &gt;= 18) ? "Adult" : "Minor";
+console.log(result); // Adult</pre></div>
+<h4>Loops</h4><p>Loops repeat a block of instructions until a condition is met. They are useful when processing lists, printing results or checking multiple items one by one.</p><div class="codeblock"><div class="codebar"><span class="lang">JavaScript</span><button class="copybtn" type="button">Copy</button></div><pre>const subjects = ["HTML", "CSS", "JavaScript", "PHP"];
+for (let i = 0; i &lt; subjects.length; i++) {
+  console.log("Subject " + i + ": " + subjects[i]);
+}
+let total = 0;
+for (const subject of subjects) { total += 1; }
+console.log("Total subjects = " + total); // 4
+let count = 1;
+while (count &lt;= 3) {
+  console.log("Loop count = " + count);
+  count++;
+}</pre></div></section>
+<section class="topic u4" id="u4-functions"><h3>Functions and Popup Boxes</h3><p>Functions are reusable blocks of code. They can accept parameters, return results and reduce repeated instructions, making programs easier to manage.</p><div class="codeblock"><div class="codebar"><span class="lang">JavaScript</span><button class="copybtn" type="button">Copy</button></div><pre>function calculateTotal(price, quantity) {
+  return price * quantity;
+}
+const bill = calculateTotal(120, 3);
+console.log(bill); // 360
+
+function greet(student) {
+  return "Welcome, " + student + "!";
+}
+console.log(greet("Asha")); // Welcome, Asha!</pre></div>
+<h4>Popup boxes</h4><table><tr><th>Function</th><th>Purpose</th></tr><tr><td><code>alert()</code></td><td>Displays a message.</td></tr><tr><td><code>confirm()</code></td><td>Asks for a yes/no decision and returns the user's choice.</td></tr><tr><td><code>prompt()</code></td><td>Receives a short text response from the user.</td></tr></table><div class="codeblock"><div class="codebar"><span class="lang">JavaScript</span><button class="copybtn" type="button">Copy</button></div><pre>alert("Welcome to the Web Technologies lab!");
+const proceed = confirm("Do you want to continue?");
+if (proceed) {
+  console.log("User clicked OK");
+} else {
+  console.log("User clicked Cancel");
+}
+const name = prompt("Enter your name:");
+console.log("Hello, " + name);</pre></div><p>Popup boxes are useful for simple interaction and testing. Custom page UI is usually less disruptive in real applications; the native dialogs are mainly useful for learning how JavaScript interacts with browser windows and user decisions.</p><button class="demo-btn" id="u4-alert-demo" type="button">Try the popup example</button></section>
+<section class="topic u4" id="u4-dom"><h3>02. JavaScript Objects and the DOM</h3><p>Objects group related data and behavior. An object can contain properties such as <code>name</code>, <code>rollNo</code> and <code>department</code>, along with methods such as <code>displayInfo()</code>. The Document Object Model (DOM) represents an HTML document as a tree of nodes. JavaScript can find nodes, read or change content, update attributes and classes, and create new elements.</p><p>The DOM allows pages to respond without reloading. A login form may check a password field, a shopping cart may update totals after a quantity change, and a dashboard may replace a chart when a user selects a different period.</p><div class="codeblock"><div class="codebar"><span class="lang">JavaScript</span><button class="copybtn" type="button">Copy</button></div><pre>const learner = {
+  name: "Asha",
+  unit: 4,
+  introduce() {
+    return `${this.name} is studying Unit ${this.unit}.`;
+  }
+};
+const message = document.querySelector("#message");
+message.textContent = learner.introduce();</pre></div>
+<h4>Common DOM operations</h4><table><tr><th>Operation</th><th>Example</th><th>Use</th></tr><tr><td>Select an element</td><td><code>document.querySelector(".notice")</code></td><td>Find the first element matching a CSS selector.</td></tr><tr><td>Read or set text</td><td><code>element.textContent = "Updated"</code></td><td>Change text without parsing it as HTML.</td></tr><tr><td>Change a class</td><td><code>element.classList.toggle("active")</code></td><td>Connect behavior to CSS presentation.</td></tr><tr><td>Create and add an element</td><td><code>list.append(newItem)</code></td><td>Build or extend page content.</td></tr></table>
+<div class="demo-panel"><p id="u4-dom-message">This card is an HTML element. JavaScript can change these text nodes and classes.</p><button class="demo-btn" id="u4-dom-update" type="button">Update the card</button> <button class="demo-btn secondary" id="u4-dom-reset" type="button">Reset</button></div></section>
+<section class="topic u4" id="u4-forms"><h3>03. Forms and Validation</h3><p>Form validation checks user input before an application accepts or sends it. HTML provides basic constraints; JavaScript can add application-specific checks and feedback. Validation guides users, reduces errors and can stop invalid data before submission.</p><p>Typical checks include whether a field is empty, whether a password is long enough, whether an email resembles the expected format, and whether required values are selected. HTML attributes provide built-in rules, while browser validation APIs let developers combine built-in rules with custom logic.</p>
+<table><tr><th>Attribute</th><th>Example</th><th>What it checks</th></tr><tr><td><code>required</code></td><td><code>&lt;input required&gt;</code></td><td>A value must be entered or selected.</td></tr><tr><td><code>type</code></td><td><code>&lt;input type="email"&gt;</code></td><td>Uses a suitable input and checks basic formats such as email or URL.</td></tr><tr><td><code>minlength / maxlength</code></td><td><code>minlength="2" maxlength="40"</code></td><td>Sets allowed text length.</td></tr><tr><td><code>min / max / step</code></td><td><code>type="number" min="1" max="10" step="1"</code></td><td>Limits numeric/date values and permitted increments.</td></tr><tr><td><code>pattern</code></td><td><code>pattern="[A-Z]{2}[0-9]{4}"</code></td><td>Requires text to match a regular-expression pattern.</td></tr></table>
+<h4>Validation flow</h4><ol><li>Collect the values when the user submits the form.</li><li>Check basic constraints, such as required fields and valid input types.</li><li>Apply extra application-specific rules and explain how to correct errors.</li><li>Continue only when values pass; validate them again on the server.</li></ol><p><code>checkValidity()</code> returns true when all constraints pass. <code>reportValidity()</code> asks the browser to display validation feedback. The <code>validity</code> property gives details about validity state, and <code>setCustomValidity(message)</code> can add a custom error. Clear a custom error with <code>setCustomValidity("")</code> when the value becomes valid.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">JavaScript</span><button class="copybtn" type="button">Copy</button></div><pre>form.addEventListener("submit", (event) =&gt; {
+  event.preventDefault();
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    message.textContent = "Please correct the highlighted fields.";
+    return;
+  }
+  message.textContent = "Form is ready to submit.";
+});</pre></div>
+<div class="demo-panel"><form id="u4-validation-form"><label for="u4-name">Name</label><input id="u4-name" minlength="2" name="name" placeholder="Enter your name" required="" type="text"/><label for="u4-email">Email</label><input id="u4-email" name="email" placeholder="student@example.com" required="" type="email"/><p>Enter a name and a valid email address, then submit.</p><button class="demo-btn" type="submit">Check the form</button><p aria-live="polite" id="u4-validation-result"></p></form></div>
+<p class="callout"><strong>Important:</strong> client-side validation improves feedback but is not a security boundary. A user can disable JavaScript or send data directly to a server, so the server must validate submitted data too.</p></section>
+<section class="topic u4" id="u4-dhtml"><h3>04. DHTML: HTML, CSS and JavaScript Together</h3><p>DHTML stands for Dynamic HTML. It is a descriptive term for using HTML, CSS and JavaScript together to make a page respond to changes and user actions. It is not a separate programming language, browser feature or software package.</p><ul><li><strong>HTML:</strong> supplies elements and meaning, such as headings, cards, forms and buttons.</li><li><strong>CSS:</strong> controls layout, colors, spacing and visual states.</li><li><strong>JavaScript:</strong> listens for events, makes decisions and updates DOM content, attributes or classes.</li></ul><h4>How a DHTML interaction works</h4><ol><li>The browser reads HTML and creates a DOM tree.</li><li>The browser applies CSS rules to determine appearance.</li><li>JavaScript finds the relevant elements and registers an event listener.</li><li>When the event occurs, JavaScript updates the DOM; the browser applies changed styles and renders the result.</li></ol><p>A common pattern is to use JavaScript to add or remove a CSS class rather than placing visual styling directly in JavaScript.</p><div class="codeblock"><div class="codebar"><span class="lang">HTML</span><button class="copybtn" type="button">Copy</button></div><pre>&lt;div class="dhtml-card" id="dhtml-card"&gt;
+  &lt;h4&gt;Interactive course card&lt;/h4&gt;
+  &lt;p&gt;Press the button to highlight this card.&lt;/p&gt;
+&lt;/div&gt;
+&lt;button type="button" id="dhtml-toggle"&gt;Toggle highlight&lt;/button&gt;</pre></div><div class="codeblock"><div class="codebar"><span class="lang">CSS</span><button class="copybtn" type="button">Copy</button></div><pre>.dhtml-card { padding: 16px; background: #f1f5f5; }
+.dhtml-card.is-active { color: white; background: #087e78; }</pre></div><div class="codeblock"><div class="codebar"><span class="lang">JavaScript</span><button class="copybtn" type="button">Copy</button></div><pre>const card = document.querySelector("#dhtml-card");
+const toggleButton = document.querySelector("#dhtml-toggle");
+toggleButton.addEventListener("click", () =&gt; {
+  card.classList.toggle("is-active");
+});</pre></div><div class="demo-panel"><div class="dhtml-card" id="dhtml-card"><h4>Interactive course card</h4><p>Its appearance changes when JavaScript toggles a class.</p></div><button class="demo-btn" id="dhtml-toggle" type="button">Toggle highlighted state</button><p aria-live="polite" id="dhtml-state">Current state: normal</p></div><p><strong>Good practice:</strong> keep content in HTML, visual rules in CSS and interaction logic in JavaScript. Use semantic HTML controls such as a real <code>&lt;button&gt;</code> so keyboard users can activate the interaction too.</p></section>
+<section class="topic u4" id="u4-events"><h3>05. Events and Buttons</h3><p>An event is something that happens in the browser, such as a click, key press, form submission or page load. An event listener connects an event to a function. Prefer <code>addEventListener()</code> so behavior stays separate from HTML structure and multiple listeners can be attached without mixing logic into inline markup.</p><p>The browser creates an event object containing useful information, such as the event type and the element involved. Developers can inspect it to decide how to respond.</p><table><tr><th>Event / concept</th><th>Use</th></tr><tr><td><code>click</code></td><td>Button activation, including keyboard activation for native buttons.</td></tr><tr><td><code>input</code></td><td>Fires as a user edits an input value; useful for real-time validation.</td></tr><tr><td><code>submit</code></td><td>Fires when a form is submitted; useful for validation and handling.</td></tr><tr><td>Event object</td><td>Provides event details and information about the element that received it.</td></tr></table><div class="codeblock"><div class="codebar"><span class="lang">JavaScript</span><button class="copybtn" type="button">Copy</button></div><pre>button.addEventListener("click", (event) =&gt; {
+  console.log("Activated:", event.currentTarget);
+  count += 1;
+  output.textContent = count;
+});</pre></div><div class="demo-panel"><button class="demo-btn" id="u4-count-add" type="button">Add one</button> <strong id="u4-count-value">0</strong> <button class="demo-btn secondary" id="u4-count-reset" type="button">Reset</button><p>Click the button to fire an event listener and update the displayed count.</p></div></section>
+<section class="topic u4" id="u4-ajax"><h3>06. AJAX and Asynchronous Web Applications</h3><p>AJAX stands for Asynchronous JavaScript and XML. The name comes from an earlier period when XML was a common response format. Today, AJAX describes sending an HTTP request from JavaScript and updating part of a page with the response without loading a new document. JSON is common, but responses may also be text, HTML, XML or another resource type.</p><p>This pattern is useful when only one part of a page needs new information, such as searching a catalog, refreshing messages, checking a username or submitting a form. AJAX is a communication pattern, not a server or database by itself.</p><h4>Request and response cycle</h4><ol><li>A user action or another event starts a request to a server URL, often called an endpoint.</li><li>The browser sends a request, commonly with <code>GET</code> to retrieve data or <code>POST</code> to send data.</li><li>The server returns a response with a status and, when appropriate, a body such as JSON or text.</li><li>JavaScript checks the response, reads the body and updates the needed DOM elements.</li><li>The rest of the document stays in place; the interface can show loading, success or error feedback along the way.</li></ol><h4>What asynchronous means</h4><p>A synchronous operation makes the next step wait for the current one to finish. Network requests can take time, so APIs such as <code>fetch()</code> work asynchronously and return a Promise representing work that will finish later. While network activity is handled, JavaScript can continue responding to events and the page can remain interactive. An <code>async</code> function can use <code>await</code>; this pauses that function until its Promise settles, not the entire browser interface.</p>
+<h4>Using fetch and handling errors</h4><p>A successful <code>fetch()</code> call gives JavaScript a response object, but an HTTP status such as 404 or 500 does not normally reject the Promise. Check <code>response.ok</code> before reading the body. <code>response.json()</code> is also asynchronous and can fail if the body is not valid JSON.</p><div class="codeblock"><div class="codebar"><span class="lang">JavaScript</span><button class="copybtn" type="button">Copy</button></div><pre>async function loadCourses() {
+  status.textContent = "Loading courses...";
+  try {
+    const response = await fetch("/api/courses");
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    const courses = await response.json();
+    output.textContent = courses.map(course =&gt; course.name).join(", ");
+    status.textContent = "Courses loaded.";
+  } catch (error) {
+    status.textContent = "Could not load courses. Check the connection.";
+    console.error(error);
+  }
+}
+loadCourses();</pre></div><p><code>/api/courses</code> is a placeholder endpoint; it must exist and return JSON containing an array of course objects with a <code>name</code> property. The <code>try...catch</code> handles network errors, non-success HTTP statuses explicitly turned into errors, and problems reading or parsing the response body.</p><p class="callout"><strong>Cross-origin requests:</strong> a page can usually request resources from its own origin. If an API is hosted on a different origin, the server must allow the page through Cross-Origin Resource Sharing (CORS). Adding <code>mode: "no-cors"</code> is not a general fix because it produces an opaque response that JavaScript cannot read normally.</p><p><strong>Demo note:</strong> a local AJAX-style demo may simulate a wait and display sample data without contacting a server. A real fetch request requires a working endpoint.</p><div class="demo-panel"><button class="demo-btn" id="u4-ajax-demo" type="button">Load sample course data</button><p aria-live="polite" id="u4-ajax-status">Waiting for a request.</p><div id="u4-ajax-output">No data loaded yet.</div></div></section>
+<section class="topic u4" id="u4-jquery"><h3>07. Introduction to jQuery</h3><p>jQuery is a JavaScript library that offers concise APIs for selecting elements, handling events, updating the DOM, effects and AJAX. It was especially valuable when browser differences required extra compatibility work. Modern browsers provide many equivalent capabilities directly, but jQuery remains in existing projects and is useful to recognize when reading or maintaining older websites.</p><p>Its main advantage is shorter, chain-based code. The <code>$()</code> function accepts CSS-style selectors; jQuery also provides convenient event, content and class methods.</p><table><tr><th>Task</th><th>Vanilla JavaScript</th><th>jQuery</th></tr><tr><td>Select an element</td><td><code>document.querySelector("#message")</code></td><td><code>$("#message")</code></td></tr><tr><td>Listen for a click</td><td><code>element.addEventListener("click", handler)</code></td><td><code>$(element).on("click", handler)</code></td></tr><tr><td>Set text content</td><td><code>element.textContent = "Hello"</code></td><td><code>$(element).text("Hello")</code></td></tr><tr><td>Toggle a class</td><td><code>element.classList.toggle("active")</code></td><td><code>$(element).toggleClass("active")</code></td></tr></table>
+<div class="codeblock"><div class="codebar"><span class="lang">JavaScript + jQuery</span><button class="copybtn" type="button">Copy</button></div><pre>// Include the jQuery library before running this script.
+$(function () {
+  $("#jquery-button").on("click", function () {
+    $("#jquery-message")
+      .text("Updated by a jQuery event handler.")
+      .toggleClass("is-highlighted");
+  });
+});</pre></div><p>The document-ready callback runs after the document is ready for manipulation. jQuery must be included before its API can run. Learn the JavaScript DOM model first; jQuery becomes easier to understand once the browser object model is familiar.</p><div class="demo-panel"><button class="demo-btn" id="jquery-button" type="button">Demonstration button</button><p id="jquery-message">This local demonstration uses plain JavaScript to illustrate the same kind of text update.</p><p class="muted-note">The study comparison above shows jQuery syntax. This page does not load the jQuery library just to display the notes.</p></div></section>
+<section class="topic u4" id="u4-recap"><h3>Unit 4 Recap</h3><ol><li>JavaScript provides variables, decisions, loops, functions and popup APIs.</li><li>Objects group values and methods; the DOM lets scripts inspect and update a document.</li><li>Validate forms in the browser for usability, and repeat validation on the server for security.</li><li>DHTML describes the combination of HTML, CSS and JavaScript; events connect user actions to code.</li><li>AJAX updates page regions asynchronously; JSON is common even though the name says XML.</li><li>jQuery is a library for DOM, event, effect and request operations; modern JavaScript has native alternatives.</li></ol><h4>Must-learn JavaScript topics for first year</h4><ul><li>Variables: <code>let</code>, <code>const</code></li><li>Data types: string, number, boolean, array and object</li><li>Arithmetic, comparison and logical operators</li><li>Conditions: <code>if</code>, <code>else if</code>, <code>else</code></li><li>Loops: <code>for</code>, <code>while</code>, <code>for...of</code></li><li>Functions, parameters, return values and reuse</li><li>Events and <code>addEventListener()</code></li><li>DOM selection and manipulation</li><li>Form validation basics</li><li>Arrays, objects and debugging with the browser console</li><li>Simple AJAX / <code>fetch()</code> understanding</li><li>Basic jQuery recognition and usage</li><li>Writing small programs and mini-projects</li></ul><h4>Beginner-friendly summary</h4><p>JavaScript makes a web page interactive. It stores data in variables, checks conditions, repeats actions with loops, reuses logic with functions, responds to user actions through events and changes page content through the DOM. It can validate forms, fetch data from a server and build dynamic experiences. HTML defines what is on the page, CSS decides how it looks, and JavaScript decides what happens when a user interacts with it.</p></section>
+<footer>Designed &amp; developed by Nayan Gupta</footer>
+</main></div></div>
+<script src="script.js"></script>
+</body>
+</html>

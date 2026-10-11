@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Web Technologies — Unit 3: Cascading Style Sheets</title>
+<meta name="description" content="Unit 3 study notes: CSS syntax, selectors, values, colors, backgrounds, typography, borders, box model, positioning, Flexbox, Grid and media queries."/>
+<link href="favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="index.html" aria-label="Web Technologies home"><span class="brand-mark" aria-hidden="true">W</span><span class="brand-name">Web Technologies</span></a>
+<div class="navgrp"><a class="navlink" href="index.html" id="nav-home">Home</a><a class="navlink" href="unit1.html" id="nav-unit1">Unit 1</a><a class="navlink" href="unit2.html" id="nav-unit2">Unit 2</a><a class="navlink on" href="unit3.html" id="nav-unit3">Unit 3</a><a class="navlink" href="unit4.html" id="nav-unit4">Unit 4</a><button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle" id="themeToggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span><span class="theme-label">Dark mode</span></button></div>
+</header>
+<div class="progress" id="progressBar"></div>
+<div class="page active" id="unit3">
+<div class="layout">
+<nav class="side">
+<a class="backlink" href="index.html">← Home</a><div class="label">Unit 3 — Contents</div>
+<a href="#u3-need">Why CSS is needed</a><a href="#u3-methods">Ways to add CSS</a><a href="#u3-syntax">Syntax and selectors</a><a href="#u3-values">Values, units and cascade</a><a href="#u3-colors">Colors and backgrounds</a><a href="#u3-text">Text and fonts</a><a href="#u3-border">Borders and box model</a><a href="#u3-position">Positioning</a><a href="#u3-modern">Modern CSS and layouts</a><a href="#u3-recap">Unit 3 recap</a>
+</nav>
+<main>
+<div class="unit-hero"><span class="eyebrow">Unit 3 · Web Technologies · C2111C3</span><h1>Cascading Style Sheets (CSS)</h1><p>Detailed study notes aligned with the supplied Unit 3 study guide. Review the explanations, tables, examples and recap before practising the code.</p></div>
+<section class="topic u3" id="u3-need"><h3>01. Why CSS Is Needed</h3>
+<p>HTML describes the meaning and structure of web content. CSS controls how that content is presented: its colors, typography, spacing, borders and layout. Keeping structure and presentation separate makes pages easier to maintain and more consistent.</p>
+<ul><li><strong>Separate content and design:</strong> keep headings, paragraphs, lists and forms in HTML and place visual rules in CSS.</li><li><strong>Reuse one design:</strong> one external stylesheet can style many pages; changing a rule can update the site consistently.</li><li><strong>Adapt to screens:</strong> flexible layouts and media queries help content work on phones, tablets and desktop displays.</li><li><strong>Reduce repeated work:</strong> reusable selectors avoid copying presentation declarations into every HTML document. Browsers can also cache external stylesheets.</li></ul>
+<h4>Same content, different presentation</h4><p>The words in a page can remain the same while CSS changes typography, color, border, spacing and depth. This is the central purpose of CSS: presentation changes without rewriting the content.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">HTML</span><button class="copybtn" type="button">Copy</button></div><pre>&lt;h2&gt;Course update&lt;/h2&gt;
+&lt;p&gt;CSS lecture begins at 10:00 AM.&lt;/p&gt;</pre></div>
+<div class="codeblock"><div class="codebar"><span class="lang">CSS</span><button class="copybtn" type="button">Copy</button></div><pre>h2 {
+  color: #174f78;
+  border-bottom: 2px solid #174f78;
+  padding-bottom: 0.5rem;
+}
+p {
+  color: #344054;
+  line-height: 1.6;
+  background-color: #f1f6fa;
+  padding: 1rem;
+}</pre></div>
+</section>
+<section class="topic u3" id="u3-methods"><h3>Three Ways to Add CSS</h3><table><tr><th>Method</th><th>Where it goes</th><th>Best suited for</th></tr><tr><td>External stylesheet</td><td>A separate <code>.css</code> file linked from the HTML <code>&lt;head&gt;</code></td><td>Shared site-wide styles and maintainable projects.</td></tr><tr><td>Internal stylesheet</td><td>A <code>&lt;style&gt;</code> element in the document <code>&lt;head&gt;</code></td><td>Styles used by one standalone page.</td></tr><tr><td>Inline style</td><td>The element's <code>style</code> attribute</td><td>A one-off demonstration; avoid repeated styling this way.</td></tr></table>
+<div class="codeblock"><div class="codebar"><span class="lang">HTML</span><button class="copybtn" type="button">Copy</button></div><pre>&lt;!-- External: reusable across multiple pages --&gt;
+&lt;link rel="stylesheet" href="styles.css"&gt;
+
+&lt;!-- Internal: rules for this document --&gt;
+&lt;style&gt;
+  h1 { color: #174f78; }
+&lt;/style&gt;
+
+&lt;!-- Inline: a single element --&gt;
+&lt;p style="color: #31765e;"&gt;Styled text&lt;/p&gt;</pre></div>
+<p><strong>Study tip:</strong> external CSS is generally the best choice for a multi-page website because it supports reuse and easier maintenance.</p></section>
+<section class="topic u3" id="u3-syntax"><h3>02. CSS Syntax and Selectors</h3><p>A CSS rule consists of a selector followed by a declaration block. Each declaration pairs a property with a value; declarations are normally separated by semicolons and enclosed in braces.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">CSS</span><button class="copybtn" type="button">Copy</button></div><pre>p.notice {
+  color: #153c5b;                 /* property: value */
+  background-color: #e8f2f8;
+  border-left: 5px solid #2196f3;
+  padding: 14px;
+}</pre></div>
+<p>In this rule, <code>p.notice</code> is the selector. The properties are <code>color</code>, <code>background-color</code>, <code>border-left</code> and <code>padding</code>; the values appear after each colon.</p>
+<h4>Common selectors</h4><table><tr><th>Selector</th><th>What it matches</th><th>Example</th></tr><tr><td>Element: <code>p</code></td><td>Every paragraph element.</td><td><code>p { line-height: 1.6; }</code></td></tr><tr><td>Class: <code>.notice</code></td><td>Every element whose class includes <code>notice</code>.</td><td><code>.notice { padding: 1rem; }</code></td></tr><tr><td>ID: <code>#main-title</code></td><td>The element with that ID, intended to be unique.</td><td><code>#main-title { color: navy; }</code></td></tr><tr><td>Universal: <code>*</code></td><td>All elements.</td><td><code>* { box-sizing: border-box; }</code></td></tr><tr><td>Grouping: <code>h1, h2</code></td><td>Both heading types.</td><td><code>h1, h2 { color: navy; }</code></td></tr><tr><td>Descendant: <code>nav a</code></td><td>Links anywhere inside a navigation element.</td><td><code>nav a { text-decoration: none; }</code></td></tr><tr><td>Child: <code>ul &gt; li</code></td><td>List items that are direct children of a list.</td><td><code>ul &gt; li { margin-block: .5rem; }</code></td></tr><tr><td>Pseudo-class: <code>a:hover</code></td><td>An element in a state, such as when the pointer is over a link.</td><td><code>a:hover { color: green; }</code></td></tr><tr><td>Pseudo-element: <code>p::first-line</code></td><td>A particular part of an element.</td><td><code>p::first-line { font-weight: bold; }</code></td></tr><tr><td>Attribute: <code>input[type="email"]</code></td><td>Inputs with a matching attribute.</td><td><code>input[type="email"] { border-color: teal; }</code></td></tr></table>
+</section>
+<section class="topic u3" id="u3-values"><h3>CSS Values, Units, Custom Properties and the Cascade</h3><p>A property only has an effect when it receives a valid value. Values can be keywords, colors, numbers, lengths, percentages or functions. A length usually needs a unit.</p>
+<table><tr><th>Unit</th><th>Relative to</th><th>Common use</th></tr><tr><td><code>px</code></td><td>A CSS pixel reference unit; not necessarily one physical screen pixel.</td><td>Fine borders and small fixed details.</td></tr><tr><td><code>rem</code></td><td>The root element's font size.</td><td>Consistent, scalable typography and spacing.</td></tr><tr><td><code>em</code></td><td>The computed font size of the element (for <code>font-size</code>, its parent).</td><td>Spacing that scales with text.</td></tr><tr><td><code>%</code></td><td>A context determined by the property, often a parent dimension.</td><td>Flexible widths and proportional sizing.</td></tr><tr><td><code>vw / vh</code></td><td>One percent of the viewport width or height.</td><td>Sizing related to the visible browser area.</td></tr></table>
+<h4>Custom properties (CSS variables)</h4><p>Custom properties store reusable values. Their names begin with two hyphens and they are read with <code>var()</code>. Defining common colors and spacing on <code>:root</code> makes them easier to update consistently.</p><div class="codeblock"><div class="codebar"><span class="lang">CSS</span><button class="copybtn" type="button">Copy</button></div><pre>:root {
+  --brand-color: #174f78;
+  --space-medium: 1rem;
+}
+.notice {
+  color: var(--brand-color);
+  padding: var(--space-medium);
+}</pre></div>
+<h4>How the cascade chooses a value</h4><p>If several rules set the same property, the browser resolves the cascade by importance and origin, selector specificity, and then source order. A later rule wins only when earlier comparisons are tied. Inline styles commonly outrank normal stylesheet rules, but they are not an unconditional highest priority.</p><div class="codeblock"><div class="codebar"><span class="lang">CSS</span><button class="copybtn" type="button">Copy</button></div><pre>p { color: #333; }             /* element selector */
+.notice { color: #174f78; }    /* class selector: more specific */
+#warning { color: #a34b00; }   /* ID selector: more specific still */</pre></div>
+<h4>Inheritance and debugging</h4><p>Some properties, especially text-related properties such as <code>color</code> and <code>font-family</code>, are inherited. Many box properties, including <code>margin</code>, <code>padding</code> and <code>border</code>, do not inherit by default. The cascade determines an element's own value; inheritance can supply a value to a child when needed.</p><p class="callout"><strong>Debugging tip:</strong> browsers generally ignore an invalid declaration and continue parsing. Check property spelling, values, braces and semicolons when a style does not appear.</p></section>
+<section class="topic u3" id="u3-colors"><h3>03. Colors and Backgrounds</h3><p>CSS accepts named colors, hexadecimal notation, RGB and HSL. Alpha variants such as RGBA control the transparency of the color itself without making child text translucent. Use <code>color</code> for text and <code>background-color</code> for an element's background. Keep text/background contrast high enough for readability.</p>
+<table><tr><th>Format</th><th>Example</th><th>Meaning</th></tr><tr><td>Named color</td><td><code>tomato</code></td><td>A predefined CSS color name.</td></tr><tr><td>HEX</td><td><code>#FF6347</code></td><td>Hexadecimal red, green and blue channels.</td></tr><tr><td>RGB</td><td><code>rgb(255, 99, 71)</code></td><td>Red, green and blue channel values.</td></tr><tr><td>HSL</td><td><code>hsl(9, 100%, 64%)</code></td><td>Hue, saturation and lightness.</td></tr><tr><td>RGBA</td><td><code>rgba(255, 99, 71, .55)</code></td><td>RGB color with an alpha/transparency value.</td></tr></table>
+<h4>Background properties</h4><table><tr><th>Property</th><th>Purpose</th></tr><tr><td><code>background-color</code></td><td>Fills an element with a solid color.</td></tr><tr><td><code>background-image</code></td><td>Places one or more images or gradients behind content.</td></tr><tr><td><code>background-repeat</code></td><td>Controls tiling: <code>repeat</code>, <code>repeat-x</code>, <code>repeat-y</code> or <code>no-repeat</code>.</td></tr><tr><td><code>background-position</code></td><td>Sets where the image begins, such as <code>center</code> or <code>right top</code>.</td></tr><tr><td><code>background-size</code></td><td><code>cover</code> fills the box; <code>contain</code> shows the whole image.</td></tr><tr><td><code>background-attachment</code></td><td>Controls whether the background scrolls with the element or viewport.</td></tr></table>
+<div class="codeblock"><div class="codebar"><span class="lang">CSS</span><button class="copybtn" type="button">Copy</button></div><pre>.banner {
+  background-color: #174f78; /* fallback color */
+  background-image: linear-gradient(120deg, #174f78, #31765e);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}</pre></div><p>A gradient is an image generated by CSS. Repeated backgrounds can create patterns; gradients can provide color transitions without an image file.</p></section>
+<section class="topic u3" id="u3-text"><h3>04. Text and Fonts</h3><p>Font properties set the typeface, size and weight. Text properties handle alignment and decoration. Relative sizes such as <code>rem</code> scale with the root font size, while unitless <code>line-height</code> scales naturally with text.</p>
+<table><tr><th>Property</th><th>Example</th><th>Effect</th></tr><tr><td><code>font-family</code></td><td><code>Georgia, serif</code></td><td>Typeface with fallback families.</td></tr><tr><td><code>font-size</code></td><td><code>1.1rem</code></td><td>Text size.</td></tr><tr><td><code>font-weight</code></td><td><code>700</code> or <code>bold</code></td><td>Stroke weight.</td></tr><tr><td><code>text-align</code></td><td><code>center</code></td><td>Horizontal text alignment.</td></tr><tr><td><code>line-height</code></td><td><code>1.6</code></td><td>Vertical room for each line of text.</td></tr><tr><td><code>text-decoration</code></td><td><code>underline</code></td><td>Underline, overline or line-through.</td></tr><tr><td><code>text-transform</code></td><td><code>uppercase</code></td><td>Changes visual letter case without changing source text.</td></tr></table>
+<div class="codeblock"><div class="codebar"><span class="lang">CSS</span><button class="copybtn" type="button">Copy</button></div><pre>.article {
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #24313d;
+}
+.article h2 { text-align: center; font-weight: 700; }
+.article a { text-decoration: underline; }
+.label { text-transform: uppercase; }</pre></div></section>
+<section class="topic u3" id="u3-border"><h3>Borders and the Box Model</h3><p>A border needs a style such as <code>solid</code> or <code>dashed</code> to be visible. The shorthand <code>border: 3px solid #174f78;</code> sets width, style and color together. One to four values can specify top, right, bottom and left in that order.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">CSS</span><button class="copybtn" type="button">Copy</button></div><pre>.solid { border: 3px solid #174f78; }
+.dotted { border: 2px dotted #31765e; }
+.dashed { border: 2px dashed #a34b00; }
+.rounded { border: 1px solid #d7e0e5; border-radius: 12px; }</pre></div>
+<h4>Box model: content, padding, border and margin</h4><p>From the inside outward, an element consists of <strong>content</strong>, <strong>padding</strong>, <strong>border</strong> and <strong>margin</strong>. Padding is inside the border; margin separates the outside of one element from its neighbors.</p><p>With the default <code>content-box</code> sizing, a declared width applies only to the content; padding and border increase the rendered size. With <code>border-box</code>, the declared width includes content, padding and border. Margins remain outside either box. In normal block flow, vertical margins of adjacent blocks can collapse into one margin rather than add together.</p>
+<table><tr><th>Sizing</th><th>Example calculation</th></tr><tr><td><code>content-box</code> (default)</td><td>Declared width 300px + 20px padding on each side + 5px border on each side = 350px rendered width.</td></tr><tr><td><code>border-box</code></td><td>The declared width includes the padding and borders, making layout calculations more predictable.</td></tr></table>
+<div class="codeblock"><div class="codebar"><span class="lang">CSS</span><button class="copybtn" type="button">Copy</button></div><pre>*, *::before, *::after {
+  box-sizing: border-box;
+}</pre></div></section>
+<section class="topic u3" id="u3-position"><h3>05. CSS Positioning</h3><p>The <code>position</code> property controls how an element is placed. Offsets such as <code>top</code> and <code>right</code> affect positioned elements according to their positioning context.</p>
+<table><tr><th>Value</th><th>How it behaves</th></tr><tr><td><code>static</code></td><td>Default position in normal document flow; offsets do not apply.</td></tr><tr><td><code>relative</code></td><td>Remains in flow and moves from its normal position; its original space remains.</td></tr><tr><td><code>absolute</code></td><td>Leaves normal flow and uses the nearest positioned ancestor as its containing block.</td></tr><tr><td><code>fixed</code></td><td>Leaves normal flow and is positioned relative to the viewport.</td></tr><tr><td><code>sticky</code></td><td>Acts relative until a scroll threshold, then sticks within its scrolling container.</td></tr></table>
+<div class="codeblock"><div class="codebar"><span class="lang">CSS</span><button class="copybtn" type="button">Copy</button></div><pre>.card { position: relative; }
+.card-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}</pre></div><p>Here the parent card has <code>position: relative</code>, so the absolutely positioned badge is anchored to the card instead of the page.</p></section>
+<section class="topic u3" id="u3-modern"><h3>CSS3 and Modern CSS Features</h3><p>CSS is developed as a collection of modules, such as Color, Selectors, Grid and Media Queries. “CSS3” is still commonly used in classrooms as a label for newer features, but there is no single all-encompassing CSS3 or CSS4 release; individual modules evolve on their own timelines.</p>
+<h4>Modern visual and layout features</h4><ul><li><code>border-radius</code> creates rounded corners.</li><li><code>box-shadow</code> adds depth around an element.</li><li><code>linear-gradient()</code> creates a gradient background image.</li><li><code>transform</code> changes an element's visual position, rotation or scale.</li><li><code>transition</code> animates changes between property values.</li><li><strong>Flexbox</strong> arranges items along one main direction, such as a row of navigation links.</li><li><strong>Grid</strong> arranges items in rows and columns, such as a group of cards.</li><li><strong>Media queries</strong> apply rules only when a condition, such as viewport width, is true.</li></ul>
+<div class="codeblock"><div class="codebar"><span class="lang">CSS</span><button class="copybtn" type="button">Copy</button></div><pre>.feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+@media (max-width: 600px) {
+  .feature-list { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-demo, .motion-demo:hover {
+    transition: none;
+    transform: none;
+  }
+}</pre></div><p>Flexible tracks such as <code>minmax()</code> and <code>auto-fit</code> can adapt between breakpoints. Choose breakpoints when the content needs them rather than targeting a particular phone model. Respecting reduced-motion preferences helps make interfaces more accessible.</p>
+</section>
+<section class="topic u3" id="u3-recap"><h3>Unit 3 Recap</h3><ol><li>HTML supplies structure; CSS controls presentation.</li><li>Selectors choose elements, declarations set values, and the cascade resolves competing rules.</li><li>Inheritance, units, colors, text, borders and the box model shape how content is displayed.</li><li>Positioning, Flexbox, Grid and media queries help arrange content across screen sizes.</li><li>Modern CSS is modular and continues to evolve through individual specifications.</li></ol><p><strong>Before moving on:</strong> practise writing one rule for an element selector, one for a class, one for a hover state, and one responsive media query.</p></section>
+<footer>Designed &amp; developed by Nayan Gupta</footer>
+</main></div></div>
+<script src="script.js"></script>
+</body>
+</html>
