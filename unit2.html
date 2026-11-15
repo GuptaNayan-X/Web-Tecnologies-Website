@@ -11,11 +11,13 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="style.css" rel="stylesheet"/>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!=='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NMCQTJPJ');</script>
 </head>
 <body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMCQTJPJ" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
 <header class="topbar">
 <a class="brand" href="index.html" aria-label="Web Technologies home"><span class="brand-mark" aria-hidden="true">W</span><span class="brand-name">Web Technologies</span></a>
-<div class="navgrp"><a class="navlink" href="index.html" id="nav-home">Home</a><a class="navlink" href="unit1.html" id="nav-unit1">Unit 1</a><a class="navlink on" href="unit2.html" id="nav-unit2">Unit 2</a><a class="navlink" href="unit3.html" id="nav-unit3">Unit 3</a><a class="navlink" href="unit4.html" id="nav-unit4">Unit 4</a><button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle" id="themeToggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span><span class="theme-label">Dark mode</span></button></div>
+<div class="navgrp"><a class="navlink" href="index.html" id="nav-home">Home</a><a class="navlink" href="unit1.html" id="nav-unit1">Unit 1</a><a class="navlink on" href="unit2.html" id="nav-unit2">Unit 2</a><a class="navlink" href="unit3.html" id="nav-unit3">Unit 3</a><a class="navlink" href="unit4.html" id="nav-unit4">Unit 4</a><a class="navlink" href="unit5.html" id="nav-unit5">Unit 5</a><a class="navlink" href="unit6.html" id="nav-unit6">Unit 6</a><button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle" id="themeToggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span><span class="theme-label">Dark mode</span></button></div>
 </header>
 <div class="progress" id="progressBar"></div>
 <div class="page active" id="unit2">
@@ -83,7 +85,7 @@
 </section>
 <section class="topic u2" id="headings-paragraphs">
 <h3>Headings, Paragraphs &amp; Whitespace</h3>
-<p><code class="inline">&lt;h1&gt;</code>–<code class="inline">&lt;h6&gt;</code> define six levels of heading importance — use only one <code class="inline">&lt;h1&gt;</code> per page, and never use headings just to make text big or bold (search engines use them to index structure; resize with <code class="inline">style="font-size:60px;"</code> instead). <code class="inline">&lt;p&gt;</code> defines a block-level paragraph; browsers add margin before and after automatically.</p>
+<p><code class="inline">&lt;h1&gt;</code>–<code class="inline">&lt;h6&gt;</code> define six levels of heading importance — a single main <code class="inline">&lt;h1&gt;</code> is a common, clear page structure, and headings should not be used just to make text big or bold. Use CSS for visual sizing. <code class="inline">&lt;p&gt;</code> defines a block-level paragraph; browsers add margin before and after automatically.</p>
 <p>Extra spaces and line breaks in your source code <strong>collapse to a single space</strong> when rendered (the "poem problem") — use <code class="inline">&lt;pre&gt;</code> to preserve exact whitespace and line breaks in a monospace font. <code class="inline">&lt;hr&gt;</code> inserts a thematic break; <code class="inline">&lt;br&gt;</code> forces a line break without starting a new paragraph.</p>
 </section>
 <section class="topic u2" id="text-formatting">
@@ -183,7 +185,7 @@
 <tr><td><code>radio</code></td><td>Pick one option from a group sharing the same <code>name</code></td></tr>
 <tr><td><code>checkbox</code></td><td>Pick any number — selections are independent</td></tr>
 <tr><td><code>submit</code></td><td>Sends the form data to the server</td></tr>
-<tr><td><code>email</code></td><td>HTML5 — validates an @ symbol</td></tr>
+<tr><td><code>email</code></td><td>HTML5 — checks that the value follows the browser's basic email-address syntax; it does not verify that the address exists.</td></tr>
 <tr><td><code>date</code></td><td>HTML5 — native calendar picker</td></tr>
 <tr><td><code>color</code></td><td>HTML5 — native color picker</td></tr>
 <tr><td><code>range</code></td><td>HTML5 — draggable slider</td></tr>

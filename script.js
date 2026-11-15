@@ -38,7 +38,7 @@ document.querySelectorAll('[data-page]').forEach(function (element) {
     var pageId = this.getAttribute('data-page');
     if (!pageId) return;
 
-    if (pageId === 'home' || pageId === 'unit1' || pageId === 'unit2' || pageId === 'unit3' || pageId === 'unit4') {
+    if (pageId === 'home' || pageId === 'unit1' || pageId === 'unit2' || pageId === 'unit3' || pageId === 'unit4' || pageId === 'unit5' || pageId === 'unit6') {
       showPage(pageId);
     }
   });
@@ -64,7 +64,7 @@ document.querySelectorAll('.copybtn').forEach(function (button) {
   });
 });
 
-['unit1', 'unit2', 'unit3', 'unit4'].forEach(function (pageId) {
+['unit1', 'unit2', 'unit3', 'unit4', 'unit5', 'unit6'].forEach(function (pageId) {
   var page = document.getElementById(pageId);
   if (!page) return;
 
@@ -131,7 +131,7 @@ updateProgress();
 
 function syncFromHash() {
   var hash = location.hash.replace('#', '');
-  if (hash === 'unit1' || hash === 'unit2' || hash === 'unit3' || hash === 'unit4' || hash === 'home') {
+  if (hash === 'unit1' || hash === 'unit2' || hash === 'unit3' || hash === 'unit4' || hash === 'unit5' || hash === 'unit6' || hash === 'home') {
     showPage(hash);
   }
 }
@@ -151,14 +151,14 @@ document.addEventListener('DOMContentLoaded', function () {
   var update = document.getElementById('u4-dom-update');
   var reset = document.getElementById('u4-dom-reset');
   var message = document.getElementById('u4-dom-message');
-  var original = 'This card is an HTML element. JavaScript can change its text.';
+  var original = 'This card is an HTML element. JavaScript can change these text nodes and classes.';
   if (update && message) update.addEventListener('click', function () {
     message.textContent = 'The DOM text was updated by JavaScript!';
-    message.classList.add('demo-highlight');
+    message.classList.add('is-updated');
   });
   if (reset && message) reset.addEventListener('click', function () {
     message.textContent = original;
-    message.classList.remove('demo-highlight');
+    message.classList.remove('is-updated');
   });
   var form = document.getElementById('u4-validation-form');
   if (form) form.addEventListener('submit', function (event) {
@@ -212,6 +212,69 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// Unit 5 XML parsing and XSLT demonstrations
+document.addEventListener('DOMContentLoaded', function () {
+  var xmlInput = document.getElementById('u5-xml-input');
+  var xsltInput = document.getElementById('u5-xslt-input');
+  var status = document.getElementById('u5-xml-status');
+  var result = document.getElementById('u5-transform-result');
+  var parseButton = document.getElementById('u5-parse');
+  var transformButton = document.getElementById('u5-transform');
+
+  if (!xmlInput || !xsltInput || !status || !result || !parseButton || !transformButton) return;
+
+  function parseXml(text) {
+    var documentNode = new DOMParser().parseFromString(text, 'application/xml');
+    var parserErrors = documentNode.getElementsByTagName('parsererror');
+    var hasParserError = Array.prototype.some.call(parserErrors, function (element) {
+      return element.namespaceURI === 'http://www.mozilla.org/newlayout/xml/parsererror.xml' ||
+        (element.namespaceURI === 'http://www.w3.org/1999/xhtml' && element.querySelector('h3'));
+    });
+    if (!hasParserError && documentNode.documentElement.localName === 'parsererror') {
+      hasParserError = documentNode.documentElement.namespaceURI === 'http://www.mozilla.org/newlayout/xml/parsererror.xml' ||
+        documentNode.documentElement.querySelector('h3') !== null;
+    }
+    if (hasParserError) {
+      throw new Error('The XML is not well-formed. Check the tags, nesting, and quoted attributes.');
+    }
+    return documentNode;
+  }
+
+  parseButton.addEventListener('click', function () {
+    try {
+      var xmlDocument = parseXml(xmlInput.value);
+      var books = xmlDocument.getElementsByTagName('book').length;
+      status.textContent = 'Well-formed XML. Found ' + books + (books === 1 ? ' book element.' : ' book elements.');
+      status.className = 'demo-status good';
+    } catch (error) {
+      status.textContent = error.message;
+      status.className = 'demo-status bad';
+    }
+  });
+
+  transformButton.addEventListener('click', function () {
+    if (typeof XSLTProcessor === 'undefined') {
+      status.textContent = 'This browser does not support the XSLTProcessor API. Use xsltproc or another XSLT 1.0 processor.';
+      status.className = 'demo-status bad';
+      return;
+    }
+
+    try {
+      var xmlDocument = parseXml(xmlInput.value);
+      var xsltDocument = parseXml(xsltInput.value);
+      var processor = new XSLTProcessor();
+      processor.importStylesheet(xsltDocument);
+      var transformedDocument = processor.transformToDocument(xmlDocument);
+      result.srcdoc = new XMLSerializer().serializeToString(transformedDocument);
+      status.textContent = 'Transformation complete. The result is displayed in a sandboxed preview.';
+      status.className = 'demo-status good';
+    } catch (error) {
+      status.textContent = 'Could not transform the XML: ' + error.message;
+      status.className = 'demo-status bad';
+    }
+  });
+});
+
 
 // Accessible light/dark theme switch. The user's choice is remembered locally.
 (function () {
@@ -245,6 +308,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!topbar) return;
   var navgrp = topbar.querySelector('.navgrp');
   if (!navgrp) return;
+
+  var themeToggle = navgrp.querySelector('.theme-toggle');
+  if (themeToggle) topbar.appendChild(themeToggle);
 
   // Inject the hamburger button
   var toggle = document.createElement('button');

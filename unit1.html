@@ -11,11 +11,13 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="style.css" rel="stylesheet"/>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!=='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NMCQTJPJ');</script>
 </head>
 <body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMCQTJPJ" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
 <header class="topbar">
 <a class="brand" href="index.html" aria-label="Web Technologies home"><span class="brand-mark" aria-hidden="true">W</span><span class="brand-name">Web Technologies</span></a>
-<div class="navgrp"><a class="navlink" href="index.html" id="nav-home">Home</a><a class="navlink on" href="unit1.html" id="nav-unit1">Unit 1</a><a class="navlink" href="unit2.html" id="nav-unit2">Unit 2</a><a class="navlink" href="unit3.html" id="nav-unit3">Unit 3</a><a class="navlink" href="unit4.html" id="nav-unit4">Unit 4</a><button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle" id="themeToggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span><span class="theme-label">Dark mode</span></button></div>
+<div class="navgrp"><a class="navlink" href="index.html" id="nav-home">Home</a><a class="navlink on" href="unit1.html" id="nav-unit1">Unit 1</a><a class="navlink" href="unit2.html" id="nav-unit2">Unit 2</a><a class="navlink" href="unit3.html" id="nav-unit3">Unit 3</a><a class="navlink" href="unit4.html" id="nav-unit4">Unit 4</a><a class="navlink" href="unit5.html" id="nav-unit5">Unit 5</a><a class="navlink" href="unit6.html" id="nav-unit6">Unit 6</a><button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle" id="themeToggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span><span class="theme-label">Dark mode</span></button></div>
 </header>
 <div class="progress" id="progressBar"></div>
 <div class="page active" id="unit1">
@@ -42,12 +44,12 @@
 <div class="unit-hero"><span class="eyebrow">Unit 1</span><h1>World Wide Web Architecture</h1><p>Protocols, server architectures, dynamic IP, Web 2.0 &amp; design standards.</p></div>
 <section class="topic u1" id="web-overview">
 <h3>What Is the World Wide Web?</h3>
-<p>The WWW is a system of interconnected pages and information accessed over the Internet, using hyperlinks to navigate between documents in text, image, audio and video formats. It was invented by Tim Berners-Lee at CERN in 1989, and the World Wide Web Consortium (<code class="inline">W3C</code>) was founded to keep its standards open. The very first website is still live at <code class="inline">http://info.cern.ch/</code>. Today the Web hosts 1.5 billion+ sites in 150+ languages, reaches over 63% of the world's population, and is browsed mostly through Chrome (60%+ share).</p>
+<p>The WWW is a system of interconnected pages and information accessed over the Internet, using hyperlinks to navigate between documents in text, image, audio and video formats. It was invented by Tim Berners-Lee at CERN in 1989, and the World Wide Web Consortium (<code class="inline">W3C</code>) was founded to keep its standards open. The first website, created at CERN, is preserved at <code class="inline">http://info.cern.ch/</code>. The Web has grown into a global information system used by people around the world.</p>
 <dl class="deflist">
-<div><dt>Web 1.0 (1990–2000)</dt><dd>Static, read-only, one-way information sharing.</dd></div>
-<div><dt>Web 2.0 (2000–2010)</dt><dd>Interactive, social, user-generated content.</dd></div>
-<div><dt>Web 3.0 (2010–2020)</dt><dd>Semantic web — machines understand and personalize data.</dd></div>
-<div><dt>Web 4.0 (2020–2030)</dt><dd>Intelligent, AI-driven, decentralized "web OS".</dd></div>
+<div><dt>Web 1.0 (often used for the early Web)</dt><dd>A shorthand for mostly static pages and limited user interaction.</dd></div>
+<div><dt>Web 2.0 (popularized in the mid-2000s)</dt><dd>A shorthand for interactive services, social platforms and user-generated content.</dd></div>
+<div><dt>Web 3.0 (proposed meanings vary)</dt><dd>May refer to the semantic web or, in other discussions, decentralized technologies; there is no single agreed definition.</dd></div>
+<div><dt>Web 4.0</dt><dd>An informal and speculative term with no universally agreed definition or timeline.</dd></div>
 </dl>
 </section>
 <section class="topic u1" id="internet-vs-www">
@@ -61,10 +63,10 @@
 </section>
 <section class="topic u1" id="client-server">
 <h3>Browsers, Servers &amp; the Client–Server Model</h3>
-<p>The Web runs on a client–server architecture: the browser requests a resource and the server returns it. A browser is a software interface — Chrome, Opera Mini, Internet Explorer — that renders text/pictures/animation/video, and also handles searching, file transfer and mail.</p>
+<p>The Web commonly uses a client–server architecture: a browser requests a resource and a server returns it. A browser renders web documents, runs client-side scripts and handles network communication and user interaction. Mail and file-transfer services may be accessed through web applications, but are not browser-server functions by themselves.</p>
 <dl class="deflist">
 <div><dt>Web browser</dt><dd>Rendering engine (Blink, Gecko, WebKit) builds the DOM/CSSOM; a JS engine (V8, SpiderMonkey) runs scripts; a network/storage layer handles cache, cookies and TLS.</dd></div>
-<div><dt>Web server</dt><dd>Listens on ports 80/443, serves files or routes to an app. Apache uses one process/thread per connection; Nginx/Node.js is async event-driven, handling 10k+ connections efficiently.</dd></div>
+<div><dt>Web server</dt><dd>Accepts HTTP connections, serves files or routes requests to an application. Apache and Nginx support different concurrency models; capacity depends on configuration, workload and available resources.</dd></div>
 </dl>
 </section>
 <section class="topic u1" id="http">
@@ -76,7 +78,7 @@
 <p><strong>Request–response lifecycle:</strong></p>
 <ol>
 <li><strong>DNS resolution</strong> — browser converts the domain to an IP via local cache → recursive resolver → root/TLD → authoritative DNS.</li>
-<li><strong>TCP 3-way handshake</strong> — client sends SYN, server replies SYN-ACK, client sends ACK, on port 80 or 443.</li>
+<li><strong>Transport connection</strong> — HTTP/1.1 and HTTP/2 commonly use TCP (usually port 80 or 443); HTTP/3 uses QUIC over UDP.</li>
 <li><strong>HTTP transmission</strong> — client sends the request; server runs routing/DB logic and returns the response.</li>
 <li><strong>Teardown / keep-alive</strong> — socket closes, or stays open for further requests.</li>
 </ol>
@@ -87,67 +89,68 @@
 <p><strong>Anatomy of a URL</strong> — <code class="inline">https://www.itmbu.ac.in</code>:</p>
 <table>
 <tr><th>Part</th><th>Value</th><th>Meaning</th></tr>
-<tr><td>Scheme</td><td>https://</td><td>Protocol; the "s" means an encrypted SSL/TLS connection</td></tr>
+<tr><td>Scheme</td><td>https://</td><td>Protocol; HTTPS protects the connection using TLS.</td></tr>
 <tr><td>Subdomain</td><td>www</td><td>Conventional label for the main public web server</td></tr>
 <tr><td>2nd-level domain</td><td>itmbu</td><td>The organisation's chosen name</td></tr>
-<tr><td>TLD</td><td>.ac.in</td><td>.ac = academic institution, .in = India ccTLD</td></tr>
+<tr><td>Domain suffix</td><td>.ac.in</td><td>.in is India's country-code TLD; .ac is a second-level category commonly used for academic institutions.</td></tr>
 </table>
 </section>
 <section class="topic u1" id="domains">
 <h3>Domain Names, Labels &amp; TLDs</h3>
 <p>Domain names are human-readable stand-ins for hard-to-remember IP addresses, and are parsed <strong>right to left</strong> (e.g. <code class="inline">developer.mozilla.org</code> → TLD → label1 → label2). A <strong>label</strong> can be 1–63 characters, is case-insensitive, and may only use letters, digits and hyphens (never as the first/last character). The label directly before the TLD is the <strong>second-level domain (SLD)</strong>; a domain isn't limited to 3 labels — <code class="inline">informatics.ed.ac.uk</code> is valid, and any base domain can delegate subdomains (<code class="inline">support.mozilla.org</code>).</p>
 <dl class="deflist">
-<div><dt>Generic TLDs</dt><dd>.com, .org, .net — no eligibility rules.</dd></div>
+<div><dt>Generic TLDs</dt><dd>.com, .org and .net are broadly open to registration, subject to registry and registrar policies.</dd></div>
 <div><dt>Country-code TLDs</dt><dd>.in, .fr, .us — may require local language or hosting.</dd></div>
-<div><dt>Restricted TLDs</dt><dd>.gov (government only), .edu / .ac (accredited institutions only).</dd></div>
+<div><dt>Restricted TLDs</dt><dd>.gov is for eligible U.S. government entities; .edu is for eligible U.S. postsecondary institutions. Eligibility rules depend on the registry.</dd></div>
 </dl>
 <p class="callout">You never permanently <em>own</em> a domain — you pay a registrar (which uses a registry) for the right to use it for one or more years, renewable ahead of other applicants. Some TLDs skip standard registrars entirely — every <code class="inline">.fire</code> domain, for example, is managed directly by Amazon.</p>
 </section>
 <section class="topic u1" id="ip-addressing">
 <h3>IP Addressing: IPv4 vs. IPv6</h3>
-<p>An IP address is a unique numeric label assigned to every network-connected device, allocated under IANA rules (ranging 0.0.0.0–255.255.255.255 for IPv4).</p>
+<p>An IP address identifies a network interface for communication at the IP layer. IANA coordinates global address allocation through regional Internet registries; networks and administrators assign addresses to interfaces. IPv4 addresses are 32-bit values, from 0.0.0.0 to 255.255.255.255.</p>
 <table>
 <tr><th>Feature</th><th>IPv4</th><th>IPv6</th></tr>
 <tr><td>Size</td><td>32-bit</td><td>128-bit</td></tr>
 <tr><td>Notation</td><td>Decimal dotted — 192.168.5.18</td><td>Hex colon — 2001:db8::1</td></tr>
-<tr><td>Address space</td><td>~4.3 billion (nearly exhausted)</td><td>340 undecillion</td></tr>
+<tr><td>Address space</td><td>~4.3 billion (public allocation pools are exhausted)</td><td>340 undecillion</td></tr>
 <tr><td>Configuration</td><td>Manual or DHCP</td><td>SLAAC, DHCPv6 or manual</td></tr>
-<tr><td>NAT</td><td>Often required</td><td>End-to-end connectivity, no NAT needed</td></tr>
-<tr><td>Security</td><td>IPsec optional</td><td>IPsec built in</td></tr>
-<tr><td>Header</td><td>Variable, 20–60 bytes</td><td>Fixed, 40 bytes</td></tr>
+<tr><td>NAT</td><td>Often used to conserve public addresses</td><td>Generally unnecessary for address conservation; translation may still be used for other reasons</td></tr>
+<tr><td>Security</td><td>IPsec support available</td><td>Standardized support for IPsec; it still needs to be configured and used</td></tr>
+<tr><td>Header</td><td>Variable, 20–60 bytes</td><td>Fixed 40-byte base header; extension headers may follow</td></tr>
 </table>
 <dl class="deflist">
 <div><dt>Public</dt><dd>The router's external address facing the ISP/Internet.</dd></div>
 <div><dt>Private</dt><dd>Internal LAN address, reused across networks to save IPv4 space (IPv6 equivalent: ULA).</dd></div>
-<div><dt>Static</dt><dd>Manually fixed; used for servers, DNS, production systems.</dd></div>
-<div><dt>Dynamic</dt><dd>Auto-assigned by DHCP from a pool; changes on reboot/lease expiry.</dd></div>
+<div><dt>Static</dt><dd>Configured with a fixed address or reserved by DHCP; often used for services that need a stable address.</dd></div>
+<div><dt>Dynamic</dt><dd>Assigned automatically, commonly by DHCP; it may change when a lease is renewed or a network reconnects.</dd></div>
 </dl>
-<p><strong>Reserved addresses:</strong> <code class="inline">0.0.0.0</code> default network · <code class="inline">127.0.0.1</code> loopback (self-test) · <code class="inline">169.254.0.1–254</code> link-local (auto-assigned when DHCP fails) · <code class="inline">255.255.255.255</code> broadcast.</p>
+<p><strong>Special-use addresses:</strong> <code class="inline">0.0.0.0</code> unspecified address (also used as a default-route prefix) · <code class="inline">127.0.0.1</code> loopback (self-test) · <code class="inline">169.254.0.0/16</code> link-local (commonly auto-configured when DHCP fails) · <code class="inline">255.255.255.255</code> limited broadcast.</p>
 </section>
 <section class="topic u1" id="ip-classes">
 <h3>IPv4 Limitations, IPv6 Benefits &amp; Address Classes</h3>
-<p>IPv4's 32-bit space is nearly exhausted, and it shows in three places: <strong>scalability</strong> (limited addresses plus wasteful broadcast overhead), <strong>routing</strong> (complex, variable-length headers and manual/DHCP misconfiguration slow every hop), and <strong>security</strong> (IPsec isn't built in, and QoS prioritisation for real-time video/voice is weak). IPv6 fixes all three with a 128-bit space, a simplified fixed 40-byte header, built-in IPsec, native QoS, and mobile-friendly design.</p>
-<p><strong>Transition strategies:</strong> <em>dual stacking</em> (a device runs IPv4 and IPv6 side by side), <em>tunneling</em> (IPv6 packets are wrapped inside IPv4 to cross older networks), and <em>NAT</em> (translates addresses so the two IP versions can talk to each other).</p>
+<p>IPv4's 32-bit address space is limited. IPv6 provides a much larger 128-bit address space, a simplified fixed 40-byte base header, and fields that support traffic classification and prioritization. IPv6 standards include IPsec support, but encryption is not automatic: applications and networks still need to configure appropriate security.</p>
+<p><strong>Transition strategies:</strong> <em>dual stacking</em> (a device runs IPv4 and IPv6 side by side), <em>tunneling</em> (IPv6 packets are wrapped inside IPv4 to cross older networks), and translation mechanisms such as <em>NAT64 with DNS64</em> (which let compatible IPv6-only clients reach IPv4 services).</p>
 <table>
-<tr><th>Class</th><th>Range</th><th>Use</th></tr>
-<tr><td>A</td><td>10.0.0.0 – 10.255.255.255</td><td>Common subnet</td></tr>
-<tr><td>B</td><td>172.16.0.0 – 172.31.255.255</td><td>Common subnet</td></tr>
-<tr><td>C</td><td>192.168.0.0 – 192.168.255.255</td><td>Common subnet</td></tr>
+<tr><th>Class / range</th><th>Address range</th><th>Use</th></tr>
+<tr><td>A private block</td><td>10.0.0.0 – 10.255.255.255</td><td>Private addresses (RFC 1918)</td></tr>
+<tr><td>B private block</td><td>172.16.0.0 – 172.31.255.255</td><td>Private addresses (RFC 1918)</td></tr>
+<tr><td>C private block</td><td>192.168.0.0 – 192.168.255.255</td><td>Private addresses (RFC 1918)</td></tr>
 <tr><td>D</td><td>224.0.0.0 – 239.255.255.255</td><td>Multicast</td></tr>
-<tr><td>E</td><td>240.0.0.0 – 254.255.255.255</td><td>Experimental</td></tr>
+<tr><td>E</td><td>240.0.0.0 – 255.255.255.255</td><td>Reserved for experimental use; 255.255.255.255 is the limited broadcast address.</td></tr>
 </table>
+<p class="callout">The first three ranges are private blocks historically associated with Classes A, B and C; they are not the complete classful ranges. Classful addressing is obsolete for modern routing, which uses CIDR.</p>
 </section>
 <section class="topic u1" id="ip-mac">
 <h3>IP vs. MAC Address, and Staying Safe</h3>
 <dl class="deflist">
-<div><dt>IP address</dt><dd>Network-layer connection identifier, 4 bytes (IPv4) or 16 bytes (IPv6), assigned by the ISP, usually dynamic, and visible to third parties online.</dd></div>
-<div><dt>MAC address</dt><dd>Data-link-layer physical identifier, 6-byte hex, set by the hardware manufacturer, static/permanent, and private — visible only on your own LAN.</dd></div>
+<div><dt>IP address</dt><dd>Network-layer address, 4 bytes (IPv4) or 16 bytes (IPv6), assigned by a network. A public address is visible to services it communicates with; a private address is normally used within a local network.</dd></div>
+<div><dt>MAC address</dt><dd>Link-layer interface address, commonly 48 bits and written in hexadecimal. It may be assigned by a manufacturer or locally configured, and operating systems can randomize it. It is normally used on the local link rather than routed across the Internet.</dd></div>
 </dl>
-<p>An exposed IP can be used for geographic tracking, targeted DDoS attacks, or to falsely implicate you in illegal downloads. Protect it with a <strong>VPN</strong>, a <strong>proxy server</strong>, a <strong>NAT firewall</strong>, ISP-rotated <strong>dynamic IPs</strong>, or simply by resetting your modem.</p>
+<p>A public IP address can reveal an approximate network location and ISP, and an exposed service may receive unwanted traffic. An IP address alone does not identify a particular person or prove who performed an action. A VPN or proxy can make a destination see the intermediary's address instead of yours; the intermediary may still see your address. A router firewall can block some unsolicited inbound connections, but does not hide your address from websites you visit. Dynamic addresses can change, but this is not guaranteed by renewing a lease or restarting a modem.</p>
 </section>
 <section class="topic u1" id="dynamic-dns">
 <h3>Dynamic IP &amp; Dynamic DNS (DDNS)</h3>
-<p><strong>Problem:</strong> standard DNS A-records map a domain to a fixed IP. When a home or small-business server's dynamic IP changes, the domain lookup breaks.</p>
+<p><strong>Problem:</strong> a DNS A record maps a hostname to an IPv4 address. If a server's dynamic address changes and its DNS record is not updated, clients may continue reaching the old address.</p>
 <p><strong>Solution:</strong> a lightweight DDNS daemon on the server watches the WAN IP; whenever it changes, the daemon sends an authenticated API request that updates the DNS A-record within seconds, keeping the domain reliably pointed at the server.</p>
 </section>
 <section class="topic u1" id="web20">
@@ -155,14 +158,14 @@
 <dl class="deflist">
 <div><dt>AJAX / async</dt><dd><code class="inline">XMLHttpRequest</code> and <code class="inline">fetch()</code> fetch data in the background without a full reload — enabling single-page apps.</dd></div>
 <div><dt>User-generated content</dt><dd>Shift from static one-way pages to participatory platforms — social networks, wikis, blogs.</dd></div>
-<div><dt>RESTful APIs</dt><dd>Lightweight JSON over HTTP REST replaced heavy SOAP/XML, enabling third-party mashups.</dd></div>
+<div><dt>Web APIs</dt><dd>REST-style APIs and JSON became widely used alongside SOAP/XML services, enabling applications to exchange data and integrate services.</dd></div>
 <div><dt>SaaS</dt><dd>Apps moved from installed binaries to cloud-hosted browser apps (Docs, Figma, Office 365).</dd></div>
 </dl>
 </section>
 <section class="topic u1" id="linux-server">
 <h3>Deploying a Linux Web Server</h3>
 <ol>
-<li><strong>Install packages</strong> — <code class="inline">sudo apt update &amp;&amp; sudo apt install apache2 nginx</code> on Debian/Ubuntu.</li>
+<li><strong>Install a web server</strong> — on Debian/Ubuntu, run <code class="inline">sudo apt update</code>, then choose either <code class="inline">sudo apt install apache2</code> or <code class="inline">sudo apt install nginx</code>.</li>
 <li><strong>Directory &amp; permissions</strong> — document root at <code class="inline">/var/www/html</code>, ownership assigned via <code class="inline">chown</code>.</li>
 <li><strong>Virtual hosts</strong> — per-domain config files in <code class="inline">sites-available</code>, letting one IP serve multiple domains.</li>
 <li><strong>Firewall &amp; SSL</strong> — open HTTP/HTTPS ports with <code class="inline">ufw</code>; issue certificates via Let's Encrypt / Certbot.</li>

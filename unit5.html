@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Web Technologies — Unit 5: XML</title>
+<meta name="description" content="Unit 5 study notes: XML structure, well-formedness, namespaces, DTD, XML Schema, XPath and XSLT transformations."/>
+<link href="favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!=='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NMCQTJPJ');</script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMCQTJPJ" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<header class="topbar">
+<a class="brand" href="index.html" aria-label="Web Technologies home"><span class="brand-mark" aria-hidden="true">W</span><span class="brand-name">Web Technologies</span></a>
+<div class="navgrp"><a class="navlink" href="index.html" id="nav-home">Home</a><a class="navlink" href="unit1.html" id="nav-unit1">Unit 1</a><a class="navlink" href="unit2.html" id="nav-unit2">Unit 2</a><a class="navlink" href="unit3.html" id="nav-unit3">Unit 3</a><a class="navlink" href="unit4.html" id="nav-unit4">Unit 4</a><a class="navlink on" href="unit5.html" id="nav-unit5">Unit 5</a><a class="navlink" href="unit6.html" id="nav-unit6">Unit 6</a><button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle" id="themeToggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span><span class="theme-label">Dark mode</span></button></div>
+</header>
+<div class="progress" id="progressBar"></div>
+<div class="page active" id="unit5">
+<div class="layout">
+<nav class="side">
+<a class="backlink" href="index.html">← Home</a>
+<div class="label">Unit 5 — Contents</div>
+<a href="#u5-intro">Introduction to XML</a>
+<a href="#u5-components">XML components</a>
+<a href="#u5-wellformed">Well-formed XML</a>
+<a href="#u5-namespaces">Namespaces</a>
+<a href="#u5-grammar">DTD and XML Schema</a>
+<a href="#u5-validation">Validation examples</a>
+<a href="#u5-xslt">XSL and XSLT</a>
+<a href="#u5-workbench">XML workbench</a>
+<a href="#u5-recap">Recap and checklist</a>
+</nav>
+<main>
+<div class="unit-hero"><span class="eyebrow">Unit 5 · Web Technologies · C2111C3</span><h1>XML: Structure, Validation, and Transformation</h1><p>Learn how XML represents structured information, how DTD and XML Schema describe valid documents, and how XPath and XSLT select and transform data.</p></div>
+<section class="topic u5" id="u5-intro">
+<h3>01. Introduction to XML</h3>
+<p>XML (Extensible Markup Language) is a text-based format for representing, storing and transporting structured data. Unlike HTML, which has predefined elements with browser-defined meaning, XML lets authors choose descriptive names that fit their information. XML describes what data means; another program or stylesheet decides how to process or display it.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">XML</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;course code="WT205"&gt;
+    &lt;title&gt;Web Technologies&lt;/title&gt;
+    &lt;credits&gt;4&lt;/credits&gt;
+    &lt;instructor&gt;Dr. Mehta&lt;/instructor&gt;
+&lt;/course&gt;</code></pre></div>
+<div class="cardgrid">
+<div class="card"><h5>Extensible</h5><p>Authors choose meaningful element and attribute names for their domain; XML does not prescribe one fixed vocabulary.</p></div>
+<div class="card"><h5>Structured</h5><p>Elements nest in a tree, so records can contain related child records in a clear parent–child relationship.</p></div>
+<div class="card"><h5>Portable text</h5><p>XML is readable text that software can process across platforms. It is a data format, not a programming language.</p></div>
+</div>
+<p>XML is not HTML: XML focuses on carrying data and does not automatically create a styled user interface. It is commonly used to exchange information between applications, store configuration and documents, and represent feeds such as RSS.</p>
+<h4>Well-formed versus valid</h4>
+<p>A <strong>well-formed</strong> document follows XML syntax rules, including a single root, correctly nested and closed elements, and quoted attribute values. A <strong>valid</strong> document is well-formed and also conforms to a declared grammar, such as a DTD or XML Schema (XSD). A browser parser can check basic well-formedness, but does not automatically validate against every DTD or XSD.</p>
+</section>
+<section class="topic u5" id="u5-components">
+<h3>02. XML Key Components</h3>
+<p>An XML document is a tree of nodes. This example includes a declaration, a root element, nested elements, attributes, text and a comment.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">XML</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;student id="s-204" status="active"&gt;
+    &lt;name&gt;Mira Shah&lt;/name&gt;
+    &lt;programme&gt;B.Tech CSE&lt;/programme&gt;
+    &lt;marks subject="XML"&gt;88&lt;/marks&gt;
+    &lt;!-- A student record --&gt;
+&lt;/student&gt;</code></pre></div>
+<table><tr><th>Component</th><th>Example</th><th>Purpose</th></tr>
+<tr><td>XML declaration</td><td><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</code></td><td>Optional first line identifying XML version and character encoding.</td></tr>
+<tr><td>Element</td><td><code>&lt;name&gt;Mira Shah&lt;/name&gt;</code></td><td>A named unit of data that can contain text, attributes, child elements or a combination.</td></tr>
+<tr><td>Root element</td><td><code>&lt;student&gt;...&lt;/student&gt;</code></td><td>The single outermost element containing every other element.</td></tr>
+<tr><td>Attribute</td><td><code>id="s-204"</code></td><td>Name/value metadata written in an element's start tag; values must be quoted.</td></tr>
+<tr><td>Text node</td><td><code>88</code></td><td>Character data between a start tag and its matching end tag.</td></tr>
+<tr><td>Comment</td><td><code>&lt;!-- A student record --&gt;</code></td><td>A note for readers; it is not part of the document's data content.</td></tr></table>
+</section>
+<section class="topic u5" id="u5-wellformed">
+<h3>03. XML Syntax and Well-Formedness</h3>
+<ul>
+<li>Element names are case-sensitive: <code>&lt;Name&gt;</code> and <code>&lt;name&gt;</code> are different names.</li>
+<li>Every opened element must be closed, or use empty-element syntax such as <code>&lt;image/&gt;</code>.</li>
+<li>Elements must be properly nested. <code>&lt;b&gt;&lt;i&gt;...&lt;/b&gt;&lt;/i&gt;</code> is not well-formed.</li>
+<li>There must be exactly one document element (root), though it may have many children.</li>
+<li>Attribute values must be quoted, for example <code>id="s-204"</code>.</li>
+<li>Escape reserved characters in text: use <code>&amp;amp;</code>, <code>&amp;lt;</code> and <code>&amp;gt;</code> for ampersand, less-than and greater-than.</li>
+</ul>
+<p class="callout"><strong>Remember:</strong> well-formedness is the baseline syntax requirement. Validation against a DTD or XSD adds application-specific rules such as required elements, order, occurrence counts and data types.</p>
+</section>
+<section class="topic u5" id="u5-namespaces">
+<h3>04. XML Namespaces</h3>
+<p>Namespaces prevent naming collisions when XML from different vocabularies is combined. An <code>xmlns</code> declaration connects a prefix to a namespace URI. The URI identifies the vocabulary; it does not have to be a working web page.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">XML</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;course xmlns:lib="https://example.edu/library"&gt;
+    &lt;title&gt;Web Technologies&lt;/title&gt;
+    &lt;lib:title&gt;XML for Libraries&lt;/lib:title&gt;
+&lt;/course&gt;</code></pre></div>
+<p>The unprefixed <code>title</code> and prefixed <code>lib:title</code> are distinct names because the latter belongs to the library namespace.</p>
+</section>
+<section class="topic u5" id="u5-grammar">
+<h3>05. DTD and XML Schema</h3>
+<p>Well-formedness checks syntax, but does not specify which elements an application expects. A grammar defines allowed elements and attributes, their order, and how often they may appear. XML processors can use a grammar to validate a document before an application consumes it.</p>
+<div class="cardgrid">
+<div class="card"><h5>DTD (Document Type Definition)</h5><p>A compact grammar declaring elements, attributes, entities and content models. A DTD can be embedded in the XML document or saved as an external <code>.dtd</code> file. Its syntax is not itself XML, and its data typing is limited.</p></div>
+<div class="card"><h5>XML Schema (XSD)</h5><p>An XML-based grammar with built-in types such as <code>xs:decimal</code>, constraints, namespaces and reusable type definitions. XSD is more expressive and strongly typed than DTD.</p></div>
+</div>
+<h4>Describe a catalog with a DTD</h4>
+<p>This DTD requires one or more <code>product</code> elements, each containing <code>name</code> followed by <code>price</code>; every product must have an <code>id</code> attribute.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">DTD · catalog.dtd</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;!ELEMENT catalog (product+)&gt;
+&lt;!ELEMENT product (name, price)&gt;
+&lt;!ATTLIST product id ID #REQUIRED&gt;
+&lt;!ELEMENT name (#PCDATA)&gt;
+&lt;!ELEMENT price (#PCDATA)&gt;</code></pre></div>
+<p>Connect an instance to the external DTD with a document type declaration:</p>
+<div class="codeblock"><div class="codebar"><span class="lang">XML · catalog.xml</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE catalog SYSTEM "catalog.dtd"&gt;
+&lt;catalog&gt;
+    &lt;product id="p101"&gt;
+        &lt;name&gt;Notebook&lt;/name&gt;
+        &lt;price&gt;45.50&lt;/price&gt;
+    &lt;/product&gt;
+&lt;/catalog&gt;</code></pre></div>
+<h4>Describe the same structure with XSD</h4>
+<div class="codeblock"><div class="codebar"><span class="lang">XML Schema · catalog.xsd</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+    &lt;xs:element name="catalog"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element name="product" maxOccurs="unbounded"&gt;
+                    &lt;xs:complexType&gt;
+                        &lt;xs:sequence&gt;
+                            &lt;xs:element name="name" type="xs:string"/&gt;
+                            &lt;xs:element name="price" type="xs:decimal"/&gt;
+                        &lt;/xs:sequence&gt;
+                        &lt;xs:attribute name="id" type="xs:ID" use="required"/&gt;
+                    &lt;/xs:complexType&gt;
+                &lt;/xs:element&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</code></pre></div>
+<p>For XSD validation, declare the schema in the XML root instead of using the DTD declaration:</p>
+<div class="codeblock"><div class="codebar"><span class="lang">XML</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="catalog.xsd"&gt;
+    ...
+&lt;/catalog&gt;</code></pre></div>
+<table><tr><th>Feature</th><th>DTD</th><th>XSD</th></tr>
+<tr><td>Grammar format</td><td>Specialized DTD syntax</td><td>XML document</td></tr>
+<tr><td>Data types</td><td>Limited, for example text and ID</td><td>Rich built-in and custom types, for example decimal and date</td></tr>
+<tr><td>Namespaces</td><td>Limited support</td><td>Designed to support XML namespaces</td></tr>
+<tr><td>Typical choice</td><td>Simple or legacy document formats</td><td>When detailed constraints and typed values are important</td></tr></table>
+</section>
+<section class="topic u5" id="u5-validation">
+<h3>06. Validating XML Documents</h3>
+<p>Save the DTD-backed document as <code>catalog.xml</code> beside <code>catalog.dtd</code>, then validate it with <code>xmllint --noout --valid catalog.xml</code>. For an XSD-backed document, replace the DTD declaration with the schema header and run <code>xmllint --noout --schema catalog.xsd catalog.xml</code>. These commands use the <code>xmllint</code> utility from libxml2; successful validation reports that the document validates.</p>
+<p class="callout">A browser's <code>DOMParser</code> can report malformed XML, but that is not the same as checking a document against a DTD or XSD. Use a validator that supports the grammar when schema validation is required.</p>
+</section>
+<section class="topic u5" id="u5-xslt">
+<h3>07. Transforming XML with XSL and XSLT</h3>
+<p>XSL (Extensible Stylesheet Language) is a family of XML technologies. Its key parts include <strong>XSLT</strong> (transformation rules), <strong>XPath</strong> (expressions for selecting nodes and values), and <strong>XSL-FO</strong> (formatting objects often used for paginated output). Introductory materials sometimes use “XSL” informally to mean an XSLT stylesheet.</p>
+<p>XSLT reads a source XML tree, selects nodes with XPath, and applies template rules to produce HTML, another XML vocabulary or plain text. It changes the representation of data, not the source XML.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">XSLT 1.0</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+    &lt;xsl:output method="html" indent="yes"/&gt;
+    &lt;xsl:template match="/"&gt;
+        &lt;table&gt;
+            &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Title&lt;/th&gt;&lt;th&gt;Author&lt;/th&gt;&lt;th&gt;Price (INR)&lt;/th&gt;&lt;/tr&gt;
+            &lt;xsl:for-each select="catalog/book"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="@id"/&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="title"/&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="author"/&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="price"/&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/xsl:for-each&gt;
+        &lt;/table&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</code></pre></div>
+<ul>
+<li><code>&lt;xsl:template match="/"&gt;</code> starts at the document root.</li>
+<li><code>&lt;xsl:for-each select="catalog/book"&gt;</code> selects each book with XPath and repeats the enclosed output.</li>
+<li><code>&lt;xsl:value-of select="@id"/&gt;</code> reads an attribute; selecting <code>title</code> or <code>author</code> reads an element's text.</li>
+<li>Literal HTML elements such as <code>&lt;table&gt;</code> become part of the result document.</li>
+</ul>
+<h4>Connect an XML file to a stylesheet</h4>
+<p>A standalone XML file can associate with an XSLT file using an <code>xml-stylesheet</code> processing instruction. Save the XML and stylesheet together, then open the XML in a browser that supports the instruction.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">XML</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;?xml-stylesheet type="text/xsl" href="catalog.xsl"?&gt;
+&lt;catalog&gt;
+    &lt;book id="b101"&gt;
+        &lt;title&gt;Learning XML&lt;/title&gt;
+        &lt;author&gt;Asha Rao&lt;/author&gt;
+        &lt;price&gt;450&lt;/price&gt;
+    &lt;/book&gt;
+&lt;/catalog&gt;</code></pre></div>
+<p>For a command-line demonstration, save the stylesheet as <code>catalog.xsl</code> and run <code>xsltproc catalog.xsl catalog.xml</code>. The transformed HTML is written to standard output; <code>xsltproc</code> is available with libxslt.</p>
+<p class="callout"><strong>Compatibility:</strong> the interactive example below uses XSLT 1.0 through the browser's <code>XSLTProcessor</code> API. Chromium warns that browser XSLT support is deprecated and may be removed; use <code>xsltproc</code> for a durable local demonstration. Browser support is not a substitute for server-side validation.</p>
+</section>
+<section class="topic u5" id="u5-workbench">
+<h3>08. XML Parsing and Transformation Workbench</h3>
+<p>Edit the sample XML and use <strong>Parse XML</strong> to check well-formedness and count the book elements. Edit the XML or XSLT and choose <strong>Transform XML</strong> to build the result table in a sandboxed preview. The browser must support <code>XSLTProcessor</code> for the transform demonstration.</p>
+<div class="demo">
+<div class="demo-label">Try the example · edit, then run</div>
+<div class="demo-body">
+<div class="demo-pane"><p class="demo-tag">Source XML</p><label for="u5-xml-input">XML document</label><textarea id="u5-xml-input" rows="15" spellcheck="false">&lt;catalog&gt;
+    &lt;book id="b101"&gt;
+        &lt;title&gt;Learning XML&lt;/title&gt;
+        &lt;author&gt;Asha Rao&lt;/author&gt;
+        &lt;price&gt;450&lt;/price&gt;
+    &lt;/book&gt;
+    &lt;book id="b102"&gt;
+        &lt;title&gt;Data on the Web&lt;/title&gt;
+        &lt;author&gt;Neil Patel&lt;/author&gt;
+        &lt;price&gt;525&lt;/price&gt;
+    &lt;/book&gt;
+&lt;/catalog&gt;</textarea></div>
+<div class="demo-pane"><p class="demo-tag">XSLT 1.0 stylesheet</p><label for="u5-xslt-input">Transformation stylesheet</label><textarea id="u5-xslt-input" rows="15" spellcheck="false">&lt;xsl:stylesheet version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;
+    &lt;xsl:output method="html" indent="yes"/&gt;
+    &lt;xsl:template match="/"&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;th&gt;ID&lt;/th&gt;
+                &lt;th&gt;Title&lt;/th&gt;
+                &lt;th&gt;Author&lt;/th&gt;
+                &lt;th&gt;Price (INR)&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;xsl:for-each select="catalog/book"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="@id"/&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="title"/&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="author"/&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;xsl:value-of select="price"/&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/xsl:for-each&gt;
+        &lt;/table&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;</textarea></div>
+<div class="demo-pane"><div class="btn-row"><button class="btn" id="u5-parse" type="button">Parse XML</button><button class="btn ghost" id="u5-transform" type="button">Transform XML</button></div><p aria-live="polite" class="demo-status" id="u5-xml-status">Edit the XML, then choose an action.</p></div>
+<div class="demo-pane"><p class="demo-tag">Transformed HTML result</p><iframe id="u5-transform-result" title="Sandboxed XSLT result preview" sandbox="" srcdoc="&lt;p&gt;Press &amp;quot;Transform XML&amp;quot; to create the table.&lt;/p&gt;"></iframe></div>
+</div>
+</div>
+</section>
+<section class="topic u5" id="u5-recap">
+<h3>Unit 5 Recap</h3>
+<ol>
+<li>XML is an extensible, text-based format for structured data.</li>
+<li>Elements, attributes, text and namespaces make up the document tree; well-formedness is the baseline syntax requirement.</li>
+<li>DTD and XSD declare allowed document structure. XSD adds richer types and constraints.</li>
+<li>XSLT uses XPath and template rules to transform XML into HTML, XML or text.</li>
+</ol>
+<h4>Must-learn XML topics</h4>
+<ul class="checklist">
+<li><label><input type="checkbox"/>XML purpose, uses, and difference from HTML</label></li>
+<li><label><input type="checkbox"/>XML declaration, root element, and document tree</label></li>
+<li><label><input type="checkbox"/>Elements, attributes, text, comments and namespaces</label></li>
+<li><label><input type="checkbox"/>Well-formedness and escaping reserved characters</label></li>
+<li><label><input type="checkbox"/>DTD declarations, content models and attributes</label></li>
+<li><label><input type="checkbox"/>XSD structure, data types, constraints and validation</label></li>
+<li><label><input type="checkbox"/>XPath selection, XSLT templates, <code>xsl:value-of</code> and <code>xsl:for-each</code></label></li>
+<li><label><input type="checkbox"/>Parse and transform XML using the examples</label></li>
+</ul>
+<p><strong>Further reading:</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/XML">MDN XML</a> · <a href="https://www.w3schools.com/xml/">W3Schools XML Tutorial</a></p>
+</section>
+<footer>Designed &amp; developed by Nayan Gupta</footer>
+</main>
+</div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

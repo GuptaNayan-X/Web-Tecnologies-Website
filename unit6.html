@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Web Technologies — Unit 6: PHP Server-Side Web Development</title>
+<meta name="description" content="Unit 6 study notes: server-side scripting with PHP, syntax, variables, arrays, forms, string processing, regular expressions and frameworks."/>
+<link href="favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!=='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NMCQTJPJ');</script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMCQTJPJ" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<header class="topbar">
+<a class="brand" href="index.html" aria-label="Web Technologies home"><span class="brand-mark" aria-hidden="true">W</span><span class="brand-name">Web Technologies</span></a>
+<div class="navgrp"><a class="navlink" href="index.html" id="nav-home">Home</a><a class="navlink" href="unit1.html" id="nav-unit1">Unit 1</a><a class="navlink" href="unit2.html" id="nav-unit2">Unit 2</a><a class="navlink" href="unit3.html" id="nav-unit3">Unit 3</a><a class="navlink" href="unit4.html" id="nav-unit4">Unit 4</a><a class="navlink" href="unit5.html" id="nav-unit5">Unit 5</a><a class="navlink on" href="unit6.html" id="nav-unit6">Unit 6</a><button aria-label="Switch to dark mode" aria-pressed="false" class="theme-toggle" id="themeToggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span><span class="theme-label">Dark mode</span></button></div>
+</header>
+<div class="progress" id="progressBar"></div>
+<div class="page active" id="unit6">
+<div class="layout">
+<nav class="side">
+<a class="backlink" href="index.html">← Home</a>
+<div class="label">Unit 6 — Contents</div>
+<a href="#u6-server">Server-side scripting</a>
+<a href="#u6-syntax">PHP syntax and basics</a>
+<a href="#u6-control">Conditions, loops and functions</a>
+<a href="#u6-forms">Handling a form safely</a>
+<a href="#u6-strings">Strings and regular expressions</a>
+<a href="#u6-frameworks">Web development frameworks</a>
+<a href="#u6-recap">Recap and checklist</a>
+</nav>
+<main>
+<div class="unit-hero"><span class="eyebrow">Unit 6 · Web Technologies · 10 Contact Hours</span><h1>PHP: Server-Side Web Development</h1><p>Study server-side scripting, PHP syntax, variables and arrays, safe form handling, string processing, regular expressions and PHP frameworks.</p></div>
+<section class="topic u6" id="u6-server">
+<h3>01. Introduction to Server-Side Scripting</h3>
+<p>A server-side script runs on a web server, not in the visitor's browser. The server can process a request, read or update data, apply application rules, and send a response such as HTML or JSON. PHP (originally “Personal Home Page,” now commonly expanded as “PHP: Hypertext Preprocessor”) is an open-source scripting language widely used for web development. PHP code can be embedded in HTML and is executed by a PHP runtime on the server.</p>
+<div class="cardgrid">
+<div class="card"><h5>Browser / client</h5><p>Sends an HTTP request, such as asking for a page or submitting a form. It receives the response and renders HTML, CSS and JavaScript.</p></div>
+<div class="card"><h5>Web server + PHP</h5><p>Routes the request to PHP, executes the script and constructs a response. The PHP source is not sent to the browser.</p></div>
+<div class="card"><h5>Data store</h5><p>A server-side application may read or write a database or files, subject to authorization and validation rules.</p></div>
+</div>
+<h4>Request and response flow</h4>
+<ol>
+<li>A browser requests a PHP route, for example <code>http://localhost:8000/hello.php</code>.</li>
+<li>The web server passes the request to the PHP interpreter.</li>
+<li>The script runs on the server and may combine data with an HTML template.</li>
+<li>The server sends the generated response to the browser; the browser displays it.</li>
+</ol>
+<p class="callout"><strong>Important:</strong> opening a <code>.php</code> file by double-clicking it (a <code>file://</code> URL) does not execute PHP. Use PHP's command-line interpreter or a web server configured with PHP. Never expose database passwords or private PHP source code in a public web directory.</p>
+<h4>First server-side script</h4>
+<p>Save this as <code>hello.php</code>. From that directory, start PHP's local development server with <code>php -S localhost:8000</code> and visit <code>http://localhost:8000/hello.php</code>. Alternatively, <code>php hello.php</code> prints the generated HTML in the terminal.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">PHP · hello.php</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;?php
+$name = 'Asha';
+$hour = (int) date('G');
+$greeting = $hour &lt; 12 ? 'Good morning' : 'Hello';
+?&gt;
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;PHP greeting&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;&lt;?= htmlspecialchars($greeting . ', ' . $name, ENT_QUOTES, 'UTF-8') ?&gt;&lt;/h1&gt;
+    &lt;p&gt;This response was generated by PHP on the server.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<p>The opening <code>&lt;?php</code> tag starts PHP code. The short echo tag <code>&lt;?= ... ?&gt;</code> outputs a value. The browser receives the resulting HTML—not the PHP statements that created it. <code>htmlspecialchars()</code> encodes text for safe insertion into HTML.</p>
+</section>
+<section class="topic u6" id="u6-syntax">
+<h3>02. Introduction and Basic Syntax of PHP</h3>
+<p>PHP statements are commonly written between <code>&lt;?php</code> and <code>?&gt;</code> tags. A semicolon ends most statements. Variable names begin with <code>$</code> and are case-sensitive. PHP keywords and function names are generally case-insensitive, but use their conventional lowercase form consistently. Use <code>//</code> or <code>/* ... */</code> for comments.</p>
+<h4>Types, variables, arrays and output</h4>
+<p>Save as <code>basics.php</code> and run <code>php basics.php</code> to print the output in a terminal.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">PHP · basics.php</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;?php
+declare(strict_types=1);
+$student = 'Mira';
+$unit = 6;
+$passed = true;
+$topics = ['PHP syntax', 'Strings', 'Frameworks'];
+$marks = ['Mira' =&gt; 88, 'Dev' =&gt; 76];
+echo "Student: $student\n";
+echo 'Unit: ' . $unit . "\n";
+echo 'Passed: ' . ($passed ? 'yes' : 'no') . "\n";
+foreach ($topics as $index =&gt; $topic) {
+    echo ($index + 1) . ". $topic\n";
+}
+foreach ($marks as $name =&gt; $score) {
+    echo "$name scored $score\n";
+}</code></pre></div>
+<ul>
+<li>Single-quoted strings are mostly literal; double-quoted strings can interpolate variables and interpret sequences such as <code>\n</code>.</li>
+<li>The dot (<code>.</code>) concatenates strings.</li>
+<li>Indexed arrays hold ordered values; associative arrays map keys to values.</li>
+</ul>
+</section>
+<section class="topic u6" id="u6-control">
+<h3>03. Conditions, Loops and Functions</h3>
+<p>A function groups reusable behavior. Parameter and return types make intended inputs and outputs clear. <code>if</code> selects a branch, and <code>foreach</code> visits each item in an array.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">PHP</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;?php
+function resultLabel(int $marks): string
+{
+    if ($marks &gt;= 40) {
+        return 'Pass';
+    }
+    return 'Needs more practice';
+}
+
+$scores = [88, 35, 72];
+foreach ($scores as $score) {
+    echo "$score: " . resultLabel($score) . PHP_EOL;
+}</code></pre></div>
+</section>
+<section class="topic u6" id="u6-forms">
+<h3>04. Handling a Form Safely</h3>
+<p>This example displays a form and handles its submission. Save the complete example as <code>greet-form.php</code>, run <code>php -S localhost:8000</code> in its directory, and open <code>http://localhost:8000/greet-form.php</code>.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">PHP + HTML · greet-form.php</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;?php
+$name = '';
+$message = '';
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $submittedName = $_POST['name'] ?? '';
+    if (!is_string($submittedName)) {
+        $error = 'Please submit a valid name.';
+    } else {
+        $name = trim($submittedName);
+        if ($name === '') {
+            $error = 'Please enter your name.';
+        } elseif (preg_match('/\A[^\r\n]{1,60}\z/u', $name) !== 1) {
+            $error = 'Name must be 60 characters or fewer and fit on one line.';
+        } else {
+            $message = 'Welcome, ' . $name . '!';
+        }
+    }
+}
+function e(string $value): string
+{
+    return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+?&gt;
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;PHP form example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form method="post"&gt;
+        &lt;label for="name"&gt;Your name&lt;/label&gt;
+        &lt;input id="name" name="name" maxlength="60" required value="&lt;?= e($name) ?&gt;"&gt;
+        &lt;button type="submit"&gt;Greet me&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;p role="status"&gt;&lt;?= e($message !== '' ? $message : $error) ?&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<p>Input is untrusted. <strong>Validation</strong> checks whether submitted data meets application rules; <strong>output encoding</strong> protects the HTML context. Do not use user input to build SQL strings—use prepared statements when connecting to a database.</p>
+</section>
+<section class="topic u6" id="u6-strings">
+<h3>05. String Processing and Regular Expressions</h3>
+<p>Strings are sequences of text. PHP provides functions to inspect, trim, split, search, replace and format them. Regular expressions describe patterns in text. PHP's <code>preg_*</code> functions use PCRE (Perl Compatible Regular Expressions) for finding patterns, extracting matches and replacing matched text.</p>
+<table><tr><th>Task</th><th>PHP function</th><th>Example or result</th></tr>
+<tr><td>Remove whitespace at the ends</td><td><code>trim()</code></td><td><code>trim(" PHP ")</code> → <code>"PHP"</code></td></tr>
+<tr><td>Count characters</td><td><code>strlen()</code> / <code>mb_strlen()</code></td><td>Use <code>mb_strlen()</code> for Unicode text when the mbstring extension is enabled.</td></tr>
+<tr><td>Replace literal text</td><td><code>str_replace()</code></td><td><code>str_replace("PHP", "web", $text)</code></td></tr>
+<tr><td>Find a regex match</td><td><code>preg_match()</code></td><td>Returns <code>1</code> for a match, <code>0</code> for no match, or <code>false</code> on error.</td></tr>
+<tr><td>Replace a regex match</td><td><code>preg_replace()</code></td><td>Returns modified text or <code>null</code> on error.</td></tr></table>
+<h4>String functions and regex in one example</h4>
+<p>Save as <code>strings.php</code> and run <code>php strings.php</code>.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">PHP · strings.php</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;?php
+$raw = '  Contact: learner@example.edu  ';
+$clean = trim($raw);
+$normalized = str_replace('Contact:', 'Email:', $clean);
+echo $normalized . PHP_EOL;
+
+$email = 'learner@example.edu';
+$pattern = '/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i';
+$match = preg_match($pattern, $email);
+if ($match === false) {
+    throw new RuntimeException('The regular expression could not be processed.');
+}
+echo ($match === 1 ? 'Email-like format found' : 'No email-like format found') . PHP_EOL;
+
+$phone = '(555) 123-4567';
+$digits = preg_replace('/\D+/', '', $phone);
+if ($digits === null) {
+    throw new RuntimeException('The replacement pattern could not be processed.');
+}
+echo "Digits only: $digits" . PHP_EOL;</code></pre></div>
+<h4>Reading the patterns</h4>
+<ul>
+<li><code>/.../i</code> uses slash delimiters; <code>i</code> makes matching case-insensitive.</li>
+<li><code>^</code> and <code>$</code> anchor a match to the start and end of the string.</li>
+<li><code>[A-Z0-9._%+-]+</code> matches one or more characters from the bracketed set.</li>
+<li><code>\.</code> means a literal dot; <code>\D</code> means any non-digit character.</li>
+</ul>
+<p class="callout"><strong>Choose the right tool:</strong> prefer simple string functions for literal replacements and searches; regex is useful when the pattern itself varies. The example email pattern checks a common email-like shape, not whether an address exists or is deliverable. For real email validation, use <code>filter_var($email, FILTER_VALIDATE_EMAIL)</code> and confirm ownership when needed. Regex checks do not replace server-side validation, context-appropriate output encoding or security controls.</p>
+</section>
+<section class="topic u6" id="u6-frameworks">
+<h3>06. Web Development Frameworks</h3>
+<p>A web framework is a reusable foundation for building applications. A PHP framework provides structure and components for common tasks such as routing requests, validating input, rendering templates, accessing databases, handling sessions and testing. Developers can use established conventions and libraries rather than rebuilding those pieces for each project.</p>
+<h4>MVC: Model, View, Controller</h4>
+<dl class="deflist">
+<div><dt>Model</dt><dd>Represents or accesses application data and domain rules, such as a course or student record.</dd></div>
+<div><dt>View</dt><dd>Formats the response for the user, commonly using an HTML template populated with data.</dd></div>
+<div><dt>Controller</dt><dd>Receives a request, coordinates relevant work and selects the response. A route may call a controller action.</dd></div>
+</dl>
+<p>MVC is a common organizational pattern, not a requirement that every framework or application use an identical file layout. Separating responsibilities generally makes a project easier to test and maintain.</p>
+<h4>Common PHP frameworks</h4>
+<table><tr><th>Framework</th><th>Overview</th><th>Often chosen for</th></tr>
+<tr><td>Laravel</td><td>Full-featured framework with expressive routing, Blade templates, ORM, migrations and a broad ecosystem.</td><td>Modern web applications and rapid development with integrated tooling.</td></tr>
+<tr><td>Symfony</td><td>Modular framework and reusable components with strong configuration and long-term project capabilities.</td><td>Large or complex applications benefiting from flexible components and explicit structure.</td></tr>
+<tr><td>CodeIgniter</td><td>Lightweight framework with a relatively small footprint and straightforward setup.</td><td>Projects seeking a simpler framework with fewer built-in moving parts.</td></tr></table>
+<h4>Runnable Laravel route example</h4>
+<p>Install Composer and a supported PHP version, then create and start a project:</p>
+<div class="codeblock"><div class="codebar"><span class="lang">Shell</span><button class="copybtn" type="button">Copy</button></div><pre><code>composer create-project laravel/laravel php-framework-demo
+cd php-framework-demo
+php artisan serve</code></pre></div>
+<p>Replace <code>routes/web.php</code> in the generated project with this route, then visit the URL shown by Artisan (usually <code>http://127.0.0.1:8000/hello</code>).</p>
+<div class="codeblock"><div class="codebar"><span class="lang">PHP · routes/web.php</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;?php
+use Illuminate\Support\Facades\Route;
+
+Route::get('/hello/{name}', function (string $name) {
+    return view('hello', ['name' =&gt; $name]);
+});</code></pre></div>
+<p>Create <code>resources/views/hello.blade.php</code>. Blade's <code>{{ ... }}</code> output syntax escapes HTML by default.</p>
+<div class="codeblock"><div class="codebar"><span class="lang">Blade · resources/views/hello.blade.php</span><button class="copybtn" type="button">Copy</button></div><pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Framework greeting&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, {{ $name }}!&lt;/h1&gt;
+    &lt;p&gt;This page is returned through a Laravel route and view.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<p>Choose a framework when an application needs routing, database access, authentication, validation and ongoing maintenance. For a very small script or learning exercise, plain PHP may be enough; understand the fundamentals before adding framework abstractions. Use documented security features, keep dependencies updated, and do not assume a framework automatically makes insecure code safe.</p>
+<p class="callout"><strong>Installation note:</strong> Composer is PHP's dependency manager. The Laravel example requires a working PHP and Composer installation and internet access to download project dependencies; it cannot execute by opening this study-guide HTML file.</p>
+</section>
+<section class="topic u6" id="u6-recap">
+<h3>Unit 6 Recap</h3>
+<ol>
+<li>PHP executes on the server and sends a response such as HTML to the client.</li>
+<li>Variables begin with <code>$</code>; use PHP tags, statements, arrays, conditions, loops and functions to express application logic.</li>
+<li>Use string functions for straightforward text work and PCRE-based regex functions for pattern matching; validate input and escape output appropriately.</li>
+<li>Frameworks provide structure and reusable web components; MVC is one common way to separate responsibilities.</li>
+</ol>
+<h4>Must-learn PHP topics</h4>
+<ul class="checklist">
+<li><label><input type="checkbox"/>Client-server request/response flow and client-side versus server-side scripting</label></li>
+<li><label><input type="checkbox"/>PHP tags, <code>echo</code>, comments and statement terminators</label></li>
+<li><label><input type="checkbox"/>Variables, data types, operators and strings</label></li>
+<li><label><input type="checkbox"/>Indexed and associative arrays</label></li>
+<li><label><input type="checkbox"/>Conditions, loops and functions</label></li>
+<li><label><input type="checkbox"/>Reading form data and checking request methods</label></li>
+<li><label><input type="checkbox"/>String functions such as <code>trim()</code> and <code>str_replace()</code></label></li>
+<li><label><input type="checkbox"/>Regex delimiters, character classes, anchors and <code>preg_match()</code></label></li>
+<li><label><input type="checkbox"/>Input validation and HTML output escaping</label></li>
+<li><label><input type="checkbox"/>MVC roles, PHP frameworks, PHP CLI and development server</label></li>
+</ul>
+<p><strong>Further reading:</strong> <a href="https://developer.mozilla.org/en-US/docs/Glossary/PHP">MDN PHP glossary</a> · <a href="https://www.w3schools.com/php/">W3Schools PHP Tutorial</a></p>
+</section>
+<footer>Designed &amp; developed by Nayan Gupta</footer>
+</main>
+</div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
